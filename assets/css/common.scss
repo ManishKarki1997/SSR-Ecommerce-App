@@ -1,0 +1,108 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: opacity 0.1s;
+}
+.fade-slide-enter,
+.fade-slide-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.icon-wrapper {
+  border-radius: 50%;
+  padding: 4px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.heart-icon {
+    &.outlined {
+      background-color: #f71638a9;
+
+      &:hover {
+        background: rgba(255, 0, 0, 0.8);
+
+        svg {
+          fill: white !important;
+        }
+      }
+
+      svg {
+        path {
+          stroke: white !important;
+          fill: white !important;
+        }
+      }
+    }
+
+    &.filled {
+      background: rgba(255, 0, 0, 0.8);
+
+      svg {
+        fill: white;
+        path {
+          fill: white;
+        }
+      }
+
+      &:hover {
+        background-color: #f71638a9;
+
+        svg {
+          path {
+            stroke: white !important;
+            fill: white !important;
+          }
+        }
+      }
+    }
+  }
+
+  &.cart-icon {
+    &.outlined {
+      background: #4438caa9;
+
+      &:hover {
+        background: rgba(0, 0, 255, 0.8);
+
+        svg {
+          fill: white;
+        }
+      }
+
+      svg {
+        fill: white !important;
+      }
+    }
+
+    &.filled {
+      background: rgba(0, 0, 255, 0.8);
+
+      svg {
+        fill: white !important;
+      }
+
+      &:hover {
+        background: #4438caa9;
+      }
+    }
+  }
+}
+
+.secondary-header-fade {
+  top: -40px;
+  opacity: 0;
+  display: none;
+  transition: all 0.1s ease-in-out;
+}

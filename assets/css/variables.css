@@ -1,0 +1,77 @@
+:root {
+  @apply dark;
+}
+
+.light {
+  --primary-background: rgb(236, 234, 234);
+  --secondary-background: rgb(255, 255, 255);
+  --tertiary-background: rgb(223, 217, 217);
+  --accent-background: #5c5bf1;
+
+  /* --primary-text: rgb(0, 0, 0); */
+  --primary-text: #141414;
+  --secondary-text: rgba(56, 55, 55, 0.897);
+  /* --accent-text: blue; */
+  --accent-text: #008ffd;
+  --primary-text-opposite: black;
+  --primary-bg-text: rgb(0, 0, 0);
+
+  --btn-primary: #4f46e5;
+  --btn-warning: #ffc02c;
+  --btn-danger: #f52847;
+  --btn-dark: rgb(17, 17, 17);
+
+  --btn-primary-hover: #4338ca;
+  --btn-primary-disabled: #2c55fbc0;
+  --btn-danger-hover: #f71638;
+  --btn-danger-disabled: #f52847c0;
+  --btn-warning-hover: #ffb814;
+  --btn-warning-disabled: #fec132c0;
+  --btn-dark-hover: rgb(15, 15, 15);
+  --btn-dark-disabled: rgba(15, 15, 15, 0.699);
+
+  --border-color: #ccc;
+  --border-color-hover: #2c55fb;
+
+  --scrollbar-background: white;
+  --scrollbar-track: #b8b8bd;
+  --scrollbar-track-hover: #9c9c9e;
+
+  --modal-background: #16192c65;
+}
+
+.dark {
+  --primary-background: #0c0f16;
+  --secondary-background: #0a0a0a;
+  --tertiary-background: #12141b;
+  --accent-background: #5c5bf1;
+
+  --primary-text: white;
+  --secondary-text: rgba(218, 216, 216, 0.973);
+  --accent-text: #008ffd;
+  --primary-text-opposite: white;
+  --primary-bg-text: black;
+
+  --btn-primary: #4f46e5;
+  --btn-warning: #ffc02c;
+  --btn-danger: #f52847;
+  --btn-dark: rgb(17, 17, 17);
+
+  --btn-primary-hover: #4338ca;
+  --btn-primary-disabled: #2c55fbc0;
+  --btn-danger-hover: #f71638;
+  --btn-danger-disabled: #f52847c0;
+  --btn-warning-hover: #ffb814;
+  --btn-warning-disabled: #fec132c0;
+  --btn-dark-hover: rgb(15, 15, 15);
+  --btn-dark-disabled: rgba(15, 15, 15, 0.699);
+
+  --border-color: rgb(39, 38, 38);
+  --border-color-hover: #2c55fb;
+
+  --scrollbar-background: #000;
+  --scrollbar-track: #191d2c;
+  --scrollbar-track-hover: #222538;
+
+  --modal-background: #16192c65;
+}

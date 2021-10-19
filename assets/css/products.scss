@@ -1,0 +1,16 @@
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  row-gap: 6rem;
+  column-gap: 3rem;
+
+  @media (min-width: 768px) {
+    column-gap: 3rem /* 48px */;
+    row-gap: 12rem;
+  }
+
+  @media (max-width: 360px) {
+    /* column-gap: 3rem; */
+    row-gap: 8rem;
+  }
+}
