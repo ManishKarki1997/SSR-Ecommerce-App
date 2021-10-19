@@ -38,6 +38,7 @@
   "devDependencies": {
     "@nuxtjs/svg": "^0.1.12",
     "@nuxtjs/tailwindcss": "^4.2.0",
+    "@nuxtjs/vercel-builder": "^0.22.1",
     "postcss": "^8.3.5",
     "sass": "^1.37.5",
     "sass-loader": "^10.2.0"
