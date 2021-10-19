@@ -8,7 +8,6 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" }
     ],
     link: [
@@ -18,12 +17,6 @@ export default {
 
         href:
           "https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;900&display=swap"
-      },
-      {
-        rel: "stylesheet",
-
-        href:
-          "https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap"
       },
       {
         rel: "stylesheet",
@@ -122,6 +115,13 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    terser: {
+      terserOptions: {
+        compress: {
+          drop_console: true
+        }
+      }
+    },
     transpile: [
       "vue-upload-drop-images",
       "vee-validate",

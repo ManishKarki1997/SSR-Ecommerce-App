@@ -20,6 +20,18 @@ export default {
     HomeProducts,
     HomeCategories,
     HomeCategoryBlock
+  },
+  head() {
+    return {
+      title: `Varya Commerce`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: `Electronic devices, gadgets and accessories shop. | Buy Acer, Dell, Asus, Razer, Apple laptops and ultrabooks at affordable prices`
+        }
+      ]
+    };
   }
 };
 </script>

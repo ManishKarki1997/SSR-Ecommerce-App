@@ -54,6 +54,35 @@ export default {
       );
     }
   },
+  head() {
+    return {
+      meta: [
+        {
+          name: "description",
+          content:
+            "Electronic devices, gadgets and accessories shop. | Buy Acer, Dell, Asus, Razer, Apple laptops and ultrabooks at affordable prices"
+        },
+        {
+          name: "keywords",
+          content:
+            "Acer, Apple, Razer, Asus, Dell, Logitech, MSI, Alienware, Ecommerce Nepal, Nepal"
+        },
+        { name: "robots", content: "INDEX,FOLLOW" },
+        { property: "og:title", content: "VaryaCommerce" },
+        {
+          property: "og:description",
+          content:
+            "Electronic devices, gadgets and accessories shop. | Buy Acer, Dell, Asus, Razer, Apple laptops and ultrabooks at affordable prices"
+        },
+        { property: "twitter:title", content: "VaryaCommerce" },
+        {
+          property: "twitter:description",
+          content:
+            "Electronic devices, gadgets and accessories shop. | Buy Acer, Dell, Asus, Razer, Apple laptops and ultrabooks at affordable prices"
+        }
+      ]
+    };
+  },
   mounted() {
     this.fetchBrandInfo();
     this.fetchLoggedInUser();

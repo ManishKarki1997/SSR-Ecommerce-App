@@ -2,7 +2,7 @@
   <client-only>
     <div v-if="editor" class="tiptapeditor">
       <div v-if="!displayMode" class="editor-buttons">
-        <button @click="addImage">
+        <button aria-label="Add Image Button" @click="addImage">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             style="width: 20px; height: 20px"
@@ -19,6 +19,7 @@
           </svg>
         </button>
         <button
+          aria-label="Bold Button"
           :class="{ 'is-active': editor.isActive('bold') }"
           @click="
             editor
@@ -31,6 +32,7 @@
           <Icon name="bold" />
         </button>
         <button
+          aria-label="Italic Button"
           :class="{ 'is-active': editor.isActive('italic') }"
           @click="
             editor
@@ -43,6 +45,7 @@
           <Icon name="italic" />
         </button>
         <button
+          aria-label="Strike Button"
           :class="{ 'is-active': editor.isActive('strike') }"
           @click="
             editor
@@ -55,6 +58,7 @@
           <Icon name="strikethrough" />
         </button>
         <button
+          aria-label="Code Button"
           :class="{ 'is-active': editor.isActive('code') }"
           @click="
             editor
@@ -67,6 +71,7 @@
           <Icon name="chain" />
         </button>
         <button
+          aria-label="Paragraph Button"
           :class="{ 'is-active': editor.isActive('paragraph') }"
           @click="
             editor
@@ -79,6 +84,7 @@
           <Icon name="paragraph" />
         </button>
         <button
+          aria-label="Heading Level 1 Button"
           :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
           @click="
             editor
@@ -91,6 +97,7 @@
           H1
         </button>
         <button
+          aria-label="Heading Level 2 Button"
           :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
           @click="
             editor
@@ -103,6 +110,7 @@
           H2
         </button>
         <button
+          aria-label="Heading Level 3 Button"
           :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }"
           @click="
             editor
@@ -115,6 +123,7 @@
           H3
         </button>
         <button
+          aria-label="Heading Level 4 Button"
           :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }"
           @click="
             editor
@@ -127,6 +136,7 @@
           H4
         </button>
         <button
+          aria-label="Heading Level 5 Button"
           :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }"
           @click="
             editor
@@ -139,6 +149,7 @@
           H5
         </button>
         <button
+          aria-label="Heading Level 6 Button"
           :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }"
           @click="
             editor
@@ -151,6 +162,7 @@
           H6
         </button>
         <button
+          aria-label="Bullet List Button"
           :class="{ 'is-active': editor.isActive('bulletList') }"
           @click="
             editor
@@ -163,6 +175,7 @@
           <Icon name="list-check" />
         </button>
         <button
+          aria-label="Ordered List Button"
           :class="{ 'is-active': editor.isActive('orderedList') }"
           @click="
             editor
@@ -175,6 +188,7 @@
           <Icon name="list-ordered" />
         </button>
         <button
+          aria-label="Code Block Button"
           :class="{ 'is-active': editor.isActive('codeBlock') }"
           @click="
             editor
@@ -187,6 +201,7 @@
           <Icon name="code" />
         </button>
         <button
+          aria-label="Block Quote Button"
           :class="{ 'is-active': editor.isActive('blockquote') }"
           @click="
             editor
@@ -199,6 +214,7 @@
           <Icon name="double-quotes" />
         </button>
         <button
+          aria-label="Horizontal Rule Button"
           @click="
             editor
               .chain()
@@ -221,6 +237,7 @@
           <Icon name="undo" />
         </button>
         <button
+          aria-label="Redo Button"
           @click="
             editor
               .chain()
@@ -234,6 +251,7 @@
 
         <div class="block w-full table-buttons">
           <button
+            aria-label="Insert Table Button"
             @click="
               editor
                 .chain()
@@ -245,6 +263,7 @@
             Insert Table
           </button>
           <button
+            aria-label="Add Column Left Button"
             @click="
               editor
                 .chain()
@@ -257,6 +276,7 @@
             Add Column Left
           </button>
           <button
+            aria-label="Add Column Right Button"
             @click="
               editor
                 .chain()
@@ -269,6 +289,7 @@
             Add Column Right
           </button>
           <button
+            aria-label="Delete Column Button"
             @click="
               editor
                 .chain()
@@ -281,6 +302,7 @@
             Delete Column
           </button>
           <button
+            aria-label="Add Row Before Button"
             @click="
               editor
                 .chain()
@@ -293,6 +315,7 @@
             Add Row Before
           </button>
           <button
+            aria-label="Add Row Button"
             @click="
               editor
                 .chain()
@@ -305,6 +328,7 @@
             Add Row After
           </button>
           <button
+            aria-label="Delete Row Button"
             @click="
               editor
                 .chain()
@@ -317,6 +341,7 @@
             Delete Row
           </button>
           <button
+            aria-label="Delete Table Button"
             @click="
               editor
                 .chain()
@@ -338,6 +363,7 @@
         v-show="editor.isActive('custom-image')"
       >
         <button
+          aria-label="Small Image Button"
           @click="
             editor
               .chain()
@@ -354,6 +380,7 @@
           Small
         </button>
         <button
+          aria-label="Medium Image Button"
           @click="
             editor
               .chain()
@@ -370,6 +397,7 @@
           Medium
         </button>
         <button
+          aria-label="Large Image Button"
           @click="
             editor
               .chain()
@@ -387,6 +415,7 @@
         </button>
         <span style="color: #aaa">|</span>
         <button
+          aria-label="Float Left Image"
           @click="
             editor
               .chain()
@@ -403,6 +432,7 @@
           Left
         </button>
         <button
+          aria-label="Float None Image"
           @click="
             editor
               .chain()
@@ -419,6 +449,7 @@
           No float
         </button>
         <button
+          aria-label="Float Right Button"
           @click="
             editor
               .chain()
@@ -434,42 +465,9 @@
         >
           Right
         </button>
-        <!-- <span style="color: #aaa">|</span>
 
-      <button
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setImage({ margin: 'none' })
-            .run()
-        "
-        :class="{
-          'is-active': editor.isActive('custom-image', {
-            margin: 'none'
-          })
-        }"
-      >
-        No Margin
-      </button>
-      <button
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setImage({ margin: 'small' })
-            .run()
-        "
-        :class="{
-          'is-active': editor.isActive('custom-image', {
-            margin: 'small'
-          })
-        }"
-      >
-        Margin (S)
-      </button> -->
         <span style="color: #aaa">|</span>
-        <button @click="addImage">Change</button>
+        <button aria-label="Change Button" @click="addImage">Change</button>
       </bubble-menu>
       <editor-content :editor="editor" class="editor" />
     </div>

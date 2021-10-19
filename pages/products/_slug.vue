@@ -19,7 +19,7 @@
             class="w-full mb-4 overflow-hidden rounded-lg cursor-pointer h-72 md:h-96"
           >
             <img
-              class="object-cover object-top w-full h-full "
+              class="object-cover object-top w-full h-auto "
               :src="activeProductImage.imageUrl"
               alt=""
             />
@@ -34,7 +34,7 @@
               class="w-full h-48 overflow-hidden rounded-lg cursor-pointer"
             >
               <img
-                class="object-cover w-full h-full "
+                class="object-cover w-full h-auto "
                 :src="img.imageUrl"
                 alt=""
               />
@@ -84,6 +84,7 @@
                 <Icon name="minus" />
               </button>
               <input
+                aria-label="Product Quantity Count"
                 v-model="productQtyCount"
                 class="w-12 px-4 py-2 text-center bg-transparent outline-none product-qty-input"
                 type="number"
@@ -159,7 +160,7 @@
         >
           <transition name="fade" mode="out-in">
             <ProductDescriptionTab
-              :editable="false"
+              :displayMode="true"
               :product="product"
               v-if="activeProductTab === 'description'"
             />
@@ -223,6 +224,18 @@ export default {
     Spinner
   },
   mixins: [cartMixin, wishlistMixin],
+  head() {
+    return {
+      title: `${this.product.name} | Varya Commerce`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: `Buy ${this.product.name} on Varya Commerce`
+        }
+      ]
+    };
+  },
   data() {
     return {
       slug: "",

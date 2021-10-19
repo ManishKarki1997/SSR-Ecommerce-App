@@ -1,7 +1,10 @@
 <template>
   <div>
     <div>
-      <TiptapEditor :editable="editable" v-model="product.editorDescription" />
+      <TiptapEditor
+        :displayMode="displayMode"
+        v-model="product.editorDescription"
+      />
     </div>
     <!-- <editor ref="editor" :config="config" />
     <button @click="invokeSave">Save</button> -->
@@ -17,9 +20,9 @@ export default {
       type: Object,
       required: true
     },
-    editable: {
+    displayMode: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   components: {

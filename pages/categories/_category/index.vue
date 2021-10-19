@@ -174,6 +174,22 @@ export default {
       ]
     };
   },
+  head() {
+    return {
+      title: `${this.categoryName} | Varya Commerce`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: `${
+            this.detailedCategories[this.categoryName] !== undefined
+              ? this.detailedCategories[this.categoryName].description
+              : this.categoryName
+          } | Varya Commerce`
+        }
+      ]
+    };
+  },
   async mounted() {
     this.categoryName = this.$route.params.category;
 

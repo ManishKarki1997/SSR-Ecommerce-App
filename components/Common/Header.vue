@@ -39,14 +39,22 @@
           </li>
 
           <li>
-            <button @click="handleToggleTheme" class="mt-2 text-primary">
+            <button
+              aria-label="Theme Button"
+              @click="handleToggleTheme"
+              class="mt-2 text-primary"
+            >
               <Icon v-if="themeMode === 'dark'" name="sun" />
               <Icon v-if="themeMode === 'light'" name="moon" />
             </button>
           </li>
 
           <li v-if="user">
-            <button @click="setCartSidebar" class="relative mt-2">
+            <button
+              aria-label="Cart Button"
+              @click="setCartSidebar"
+              class="relative mt-2"
+            >
               <span @click="setCartSidebar">
                 <Icon class="cursor-pointer " name="basket" />
               </span>
@@ -103,14 +111,22 @@
         <!-- mobile menu -->
         <ul class="flex items-center space-x-4 md:hidden">
           <li class="-mt-2 ">
-            <button @click="handleToggleTheme" class="mt-2 text-primary">
+            <button
+              aria-label="Theme Button"
+              @click="handleToggleTheme"
+              class="mt-2 text-primary"
+            >
               <Icon v-if="themeMode === 'dark'" name="sun" />
               <Icon v-if="themeMode === 'light'" name="moon" />
             </button>
           </li>
 
           <li class="relative ">
-            <button @click="isMobileMenuActive = true" class="ml-auto">
+            <button
+              aria-label="Mobile Menu Toggle Button"
+              @click="isMobileMenuActive = true"
+              class="ml-auto"
+            >
               <Icon name="menu" />
             </button>
           </li>
@@ -128,7 +144,10 @@
                 <span class="-ml-2 ">arya</span>
               </nuxt-link>
 
-              <button @click="isMobileMenuActive = false">
+              <button
+                aria-label="Close Mobile Menu Button"
+                @click="isMobileMenuActive = false"
+              >
                 <Icon name="close" />
               </button>
             </div>
@@ -140,6 +159,7 @@
                 :key="'mobile-menu-item-' + category.name + '-' + category.id"
               >
                 <button
+                  aria-label="Category Accordion Button"
                   @click="gotoCategory({ category }, true)"
                   class="flex items-center justify-between space-x-4"
                 >
@@ -179,6 +199,7 @@
                     class="mb-4 text-sm"
                   >
                     <button
+                      aria-label="Sub Category Accordion Button"
                       @click="gotoCategory({ category, subCategory }, false)"
                       class="flex items-center space-x-2"
                     >

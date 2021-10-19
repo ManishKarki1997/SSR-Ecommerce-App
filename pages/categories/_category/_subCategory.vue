@@ -154,6 +154,18 @@ export default {
       ]
     };
   },
+  head() {
+    return {
+      title: `${this.subCategory.name} | Varya Commerce`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: `${this.subCategory?.description} | Varya Commerce`
+        }
+      ]
+    };
+  },
   async fetch() {
     try {
       this.categoryName = this.$route.params.category;
