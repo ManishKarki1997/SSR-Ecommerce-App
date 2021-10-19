@@ -1,6 +1,6 @@
 <template>
   <header class="fixed top-0 left-0 z-20 w-full px-6 py-6 lg:px-12 bg-primary">
-    <div class="flex items-center justify-between">
+    <div class="flex items-center ">
       <div class="w-3/12 brand md:w-2/12">
         <nuxt-link to="/" class="text-primary">
           <span class="text-4xl font-bold ">V</span>

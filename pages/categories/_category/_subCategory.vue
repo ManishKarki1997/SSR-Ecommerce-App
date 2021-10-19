@@ -1,7 +1,15 @@
 <template>
   <div class="relative w-full py-8 pb-32 bg-primary">
-    <div v-if="isLoadingProducts && !products" class="w-full h-32">
-      <Spinner dark title="Fetching products" />
+    <div
+      v-if="!isLoadingSubcategory && !subCategory"
+      class="flex items-center justify-center w-full h-32 mt-32 text-center"
+    >
+      <div class="flex flex-col items-center">
+        <Icon name="category" />
+        <p class="mt-2 italic text-primary">
+          Sub Category with that name not found
+        </p>
+      </div>
     </div>
 
     <!-- subcategory header -->
@@ -41,7 +49,7 @@
     <!-- main -->
     <div class="relative">
       <div class="flex w-full ">
-        <aside class="hidden md:block md:w-3/12">
+        <aside v-if="subCategory" class="hidden md:block md:w-3/12">
           <div style="top:5.5rem" class="sticky left-0 z-50 ">
             <MultiRangeSlider class="mb-8" @changed="handlePriceChange" />
 
@@ -59,7 +67,7 @@
           </div>
         </aside>
 
-        <div class="w-full md:px-8 lg:w-9/12">
+        <div v-if="subCategory" class="w-full md:px-8 lg:w-9/12">
           <!-- product sort dropdown -->
           <div style="top:5.5rem" class="sticky left-0 z-50 pb-4 bg-primary ">
             <div
@@ -116,6 +124,7 @@ import SelectDropdown from "@/components/UI/Select.vue";
 import ProductCard from "@/components/Common/ProductCard.vue";
 import SingleTextSelect from "@/components/UI/Filters/SingleTextSelect.vue";
 import MultiRangeSlider from "@/components/UI/Filters/MultiRangeSlider.vue";
+import Icon from "@/components/UI/Icon.vue";
 
 export default {
   components: {
@@ -123,7 +132,8 @@ export default {
     SelectDropdown,
     ProductCard,
     SingleTextSelect,
-    MultiRangeSlider
+    MultiRangeSlider,
+    Icon
   },
   computed: {
     ...mapState("categories", ["detailedCategories"])
@@ -156,12 +166,23 @@ export default {
   },
   head() {
     return {
-      title: `${this.subCategory.name} | Varya Commerce`,
+      title: `${
+        this.subCategory ? this.subCategory.name : this.categoryName
+      } | Varya Commerce`,
       meta: [
         {
           hid: "description",
           name: "description",
-          content: `${this.subCategory?.description} | Varya Commerce`
+          content: `${this.subCategory &&
+            this.subCategory?.description} | Varya Commerce`
+        },
+        {
+          name: "twitter:image",
+          content: `${this.subCategory && this.subCategory.imageUrl}`
+        },
+        {
+          name: "og:image",
+          content: `${this.subCategory && this.subCategory.imageUrl}`
         }
       ]
     };

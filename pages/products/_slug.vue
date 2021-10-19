@@ -232,6 +232,16 @@ export default {
           hid: "description",
           name: "description",
           content: `Buy ${this.product.name} on Varya Commerce`
+        },
+        {
+          name: "twitter:image",
+          content: `${this.product?.images.length > 0 &&
+            this.product.images[0].imageUrl}`
+        },
+        {
+          name: "og:image",
+          content: `${this.product?.images.length > 0 &&
+            this.product.images[0].imageUrl}`
         }
       ]
     };

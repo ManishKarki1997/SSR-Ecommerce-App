@@ -8,6 +8,18 @@
     </div>
 
     <div
+      v-if="!isLoadingCategory && Object.keys(detailedCategories).length === 0"
+      class="flex items-center justify-center w-full h-32 mt-32 text-center"
+    >
+      <div class="flex flex-col items-center">
+        <Icon name="category" />
+        <p class="mt-2 italic text-primary">
+          Category with that name not found
+        </p>
+      </div>
+    </div>
+
+    <div
       v-if="
         !isLoadingCategory && detailedCategories[categoryName] !== undefined
       "
@@ -139,6 +151,7 @@ import SelectDropdown from "@/components/UI/Select.vue";
 import ProductCard from "@/components/Common/ProductCard.vue";
 import SingleTextSelect from "@/components/UI/Filters/SingleTextSelect.vue";
 import MultiRangeSlider from "@/components/UI/Filters/MultiRangeSlider.vue";
+import Icon from "@/components/UI/Icon.vue";
 
 export default {
   components: {
@@ -146,7 +159,8 @@ export default {
     SelectDropdown,
     ProductCard,
     SingleTextSelect,
-    MultiRangeSlider
+    MultiRangeSlider,
+    Icon
   },
   computed: {
     ...mapState("categories", ["detailedCategories"])
@@ -176,7 +190,8 @@ export default {
   },
   head() {
     return {
-      title: `${this.categoryName} | Varya Commerce`,
+      title: `${this.detailedCategories[this.categoryName]?.name ||
+        this.categoryName} | Varya Commerce`,
       meta: [
         {
           hid: "description",
@@ -186,6 +201,16 @@ export default {
               ? this.detailedCategories[this.categoryName].description
               : this.categoryName
           } | Varya Commerce`
+        },
+        {
+          name: "twitter:image",
+          content: `${this.detailedCategories[this.categoryName] !==
+            undefined && this.detailedCategories[this.categoryName].imageUrl}`
+        },
+        {
+          name: "og:image",
+          content: `${this.detailedCategories[this.categoryName] !==
+            undefined && this.detailedCategories[this.categoryName].imageUrl}`
         }
       ]
     };
