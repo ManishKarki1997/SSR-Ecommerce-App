@@ -103,7 +103,9 @@
     >
       <div class="flex flex-col items-center">
         <Icon name="inbox" />
-        <p class="mt-2 italic text-primary">Wishlist is empty</p>
+        <p class="mt-2 text-lg text-primary">
+          Wishlist is empty
+        </p>
       </div>
     </div>
 

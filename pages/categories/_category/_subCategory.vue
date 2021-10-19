@@ -6,7 +6,7 @@
     >
       <div class="flex flex-col items-center">
         <Icon name="category" />
-        <p class="mt-2 italic text-primary">
+        <p class="mt-2 text-lg text-primary">
           Sub Category with that name not found
         </p>
       </div>
@@ -105,7 +105,10 @@
             </div>
 
             <div class="flex items-center justify-center w-full h-16">
-              <p class=" text-primary" v-if="products && products.length === 0">
+              <p
+                class=" text-primary"
+                v-if="!isLoadingProducts && products && products.length === 0"
+              >
                 No products found
               </p>
             </div>
@@ -173,8 +176,9 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: `${this.subCategory &&
-            this.subCategory?.description} | Varya Commerce`
+          content: `${
+            this.subCategory ? this.subCategory?.description : this.categoryName
+          } | Varya Commerce`
         },
         {
           name: "twitter:image",

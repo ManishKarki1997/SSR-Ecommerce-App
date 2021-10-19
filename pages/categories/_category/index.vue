@@ -7,17 +7,21 @@
       <Spinner dark title="Fetching category" />
     </div>
 
-    <div
-      v-if="!isLoadingCategory && Object.keys(detailedCategories).length === 0"
-      class="flex items-center justify-center w-full h-32 mt-32 text-center"
-    >
-      <div class="flex flex-col items-center">
-        <Icon name="category" />
-        <p class="mt-2 italic text-primary">
-          Category with that name not found
-        </p>
+    <client-only>
+      <div
+        v-if="
+          !isLoadingCategory && Object.keys(detailedCategories).length === 0
+        "
+        class="flex items-center justify-center w-full h-32 mt-32 text-center"
+      >
+        <div class="flex flex-col items-center ">
+          <Icon name="category" />
+          <p class="mt-2 text-lg text-primary">
+            Category with that name not found
+          </p>
+        </div>
       </div>
-    </div>
+    </client-only>
 
     <div
       v-if="
@@ -135,6 +139,20 @@
                 :idx="idx + 1"
                 :product="product"
               />
+            </div>
+
+            <div
+              v-if="
+                !isLoadingProducts &&
+                  detailedCategories[categoryName] !== undefined &&
+                  detailedCategories[categoryName].products &&
+                  detailedCategories[categoryName].products.length === 0
+              "
+              class="flex items-center justify-center w-full h-16"
+            >
+              <p class=" text-primary">
+                No products found
+              </p>
             </div>
           </div>
         </div>
