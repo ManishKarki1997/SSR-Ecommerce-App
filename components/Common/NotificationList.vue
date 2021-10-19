@@ -47,6 +47,11 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
 
+  @media (max-width: 360px) {
+    width: 100%;
+    bottom: 0;
+  }
+
   .notification-list {
     display: flex;
     flex-direction: column;

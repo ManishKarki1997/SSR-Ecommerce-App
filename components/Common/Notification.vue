@@ -1,10 +1,10 @@
 <template>
   <div
     :class="[notification.type === undefined ? 'info' : notification.type]"
-    class="flex max-w-xl px-4 py-4 rounded-lg shadow-2xl notification bg-secondary"
+    class="flex w-full px-4 py-4 rounded-lg shadow-2xl md:max-w-xl notification bg-secondary"
   >
     <div
-      class="w-16 h-16 mr-2 icon-wrapper"
+      class="w-12 h-12 mr-2 icon-wrapper"
       :class="[notification.type === undefined ? 'info' : notification.type]"
     >
       <Icon
@@ -17,7 +17,7 @@
     </div>
 
     <div class="">
-      <h4 class="text-lg font-semibold text-primary">
+      <h4 class="text-base font-semibold md:text-lg text-primary">
         {{ notification.title }}
       </h4>
       <p class="text-sm text-secondary">
@@ -91,8 +91,8 @@ export default {
 }
 .icon-wrapper {
   svg {
-    width: 48px !important;
-    height: 48px !important;
+    width: 100%;
+    height: 100%;
   }
 
   &.info {

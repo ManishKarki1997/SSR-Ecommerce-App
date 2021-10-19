@@ -180,7 +180,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .icon-wrapper {
   svg {
     width: 20px !important;
