@@ -72,7 +72,9 @@
             <div>
               <h3 class="my-2 text-lg text-accent">
                 <span>{{ constants.CURRENCY }}</span>
-                <span>{{ cartItem.count * cartItem.product.price }}</span>
+                <span>{{
+                  (cartItem.count * cartItem.product.price).toFixed(2)
+                }}</span>
               </h3>
             </div>
           </div>

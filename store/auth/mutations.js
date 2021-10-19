@@ -1,4 +1,7 @@
 const mutations = {
+  SET_LOADING_USER(state, isLoadingUser) {
+    state.isLoadingUser = isLoadingUser;
+  },
   SET_USER(state, user) {
     state.user = user;
   },

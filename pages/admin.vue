@@ -16,6 +16,7 @@ import Sidebar from "@/components/Admin/Sidebar";
 export default {
   components: {
     Sidebar
-  }
+  },
+  middleware: "auth"
 };
 </script>

@@ -159,6 +159,7 @@
         >
           <transition name="fade" mode="out-in">
             <ProductDescriptionTab
+              :editable="false"
               :product="product"
               v-if="activeProductTab === 'description'"
             />

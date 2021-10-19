@@ -11,7 +11,7 @@
       </div>
 
       <div v-if="subCategory" class="flex flex-col items-center ">
-        <div class="w-full mb-8 overflow-hidden rounded-lg md:w-48 md:h-48">
+        <div class="w-full mb-8 overflow-hidden rounded-lg md:w-56 md:h-48">
           <img
             class="object-cover w-full h-full transition-all duration-300 transform cursor-pointer hover:scale-110"
             :src="subCategory.imageUrl"
@@ -42,7 +42,7 @@
     <div class="relative">
       <div class="flex w-full ">
         <aside class="hidden md:block md:w-3/12">
-          <div style="top:5.5rem" class="sticky left-0 z-10 ">
+          <div style="top:5.5rem" class="sticky left-0 z-50 ">
             <MultiRangeSlider class="mb-8" @changed="handlePriceChange" />
 
             <template v-if="subCategory">
@@ -61,7 +61,7 @@
 
         <div class="w-full md:px-8 lg:w-9/12">
           <!-- product sort dropdown -->
-          <div style="top:5.5rem" class="sticky left-0 z-20 pb-4 bg-primary ">
+          <div style="top:5.5rem" class="sticky left-0 z-50 pb-4 bg-primary ">
             <div
               class="flex items-center justify-between w-full filters-header"
             >

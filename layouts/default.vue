@@ -62,20 +62,22 @@ export default {
     AOS.init();
     let themeToSet = "";
 
-    // const savedTheme =
-    //   window && window.localStorage.getItem("varya-commerce-theme");
+    if (process.client) {
+      const savedTheme =
+        window && window.localStorage.getItem("varya-commerce-theme");
 
-    // themeToSet = savedTheme || "light";
+      themeToSet = savedTheme || "light";
 
-    // if (!savedTheme) {
-    //   const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
-    //   if (userMedia.matches) {
-    //     themeToSet = "dark";
-    //   }
-    // }
+      if (!savedTheme) {
+        const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
+        if (userMedia.matches) {
+          themeToSet = "dark";
+        }
+      }
 
-    // this.$store.commit("SET_THEME_MODE", themeToSet);
-    // toggleTheme(themeToSet);
+      this.$store.commit("SET_THEME_MODE", themeToSet);
+      toggleTheme(themeToSet);
+    }
 
     Object.keys(rules).forEach(rule => {
       extend(rule, {
@@ -132,6 +134,7 @@ export default {
     async fetchLoggedInUser() {
       if (this.alreadyTriedLogin && !this.isLoggedIn) return;
       try {
+        this.$store.commit("auth/SET_LOADING_USER", true);
         const res = await this.$store.dispatch("auth/fetchCurrentUser");
 
         if (res.data.payload.user !== undefined) {
@@ -142,6 +145,7 @@ export default {
             "auth/SET_WISHLIST",
             res.data.payload.user.wishlist
           );
+          this.$store.commit("auth/SET_LOADING_USER", false);
         }
       } catch (error) {
         if (error.response.status === 400) {

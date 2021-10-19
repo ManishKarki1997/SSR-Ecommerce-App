@@ -6,7 +6,6 @@
           <span class="text-4xl font-bold ">V</span>
           <span class="-ml-2 ">arya</span>
         </nuxt-link>
-        <!-- <nuxt-link to="/" class="text-primary">Varya</nuxt-link> -->
       </div>
 
       <div class="hidden md:flex md:w-6/12 lg:w-7/12">
@@ -141,7 +140,7 @@
                 :key="'mobile-menu-item-' + category.name + '-' + category.id"
               >
                 <button
-                  @click="$router.push(`/categories/${category.slug}`)"
+                  @click="gotoCategory({ category }, true)"
                   class="flex items-center justify-between space-x-4"
                 >
                   <span @click.stop="handleSelectMobileMenuItem(category)">
@@ -180,11 +179,7 @@
                     class="mb-4 text-sm"
                   >
                     <button
-                      @click="
-                        $router.push(
-                          `/categories/${category.slug}/${subCategory.slug}`
-                        )
-                      "
+                      @click="gotoCategory({ category, subCategory }, false)"
                       class="flex items-center space-x-2"
                     >
                       <div
@@ -300,6 +295,8 @@ export default {
       activeMobileMenuItemUid: ""
     };
   },
+  mounted() {},
+
   watch: {
     user: {
       handler(newVal) {
@@ -323,6 +320,15 @@ export default {
   },
 
   methods: {
+    gotoCategory({ category, subCategory }, isCategory) {
+      this.isMobileMenuActive = false;
+      this.activeMobileMenuItemUid = "";
+      if (isCategory) {
+        this.$router.push(`/categories/${category.slug}`);
+      } else {
+        this.$router.push(`/categories/${category.slug}/${subCategory.slug}`);
+      }
+    },
     handleClickUserAvatar() {
       this.isProfileContextMenuActive = !this.isProfileContextMenuActive;
     },

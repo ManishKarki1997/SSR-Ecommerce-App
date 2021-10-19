@@ -99,6 +99,7 @@ export default {
       lang: "en"
     }
   },
+  serverMiddleware: ["~/serverMiddleware/selectiveSSR.js"],
   axios: {
     // baseURL: process.env.BACKEND_API_URL,
     baseURL: "http://localhost:4000/api/",
