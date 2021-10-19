@@ -1,18 +1,19 @@
 <template>
-  <div class="relative w-full py-24 bg-primary">
+  <div class="relative w-full py-8 pb-32 md:pt-24 bg-primary">
     <div
       v-if="isLoadingCategory && detailedCategories[categoryName] === undefined"
       class="w-full h-32"
     >
       <Spinner dark title="Fetching category" />
     </div>
+
     <div
       v-if="
         !isLoadingCategory && detailedCategories[categoryName] !== undefined
       "
     >
       <!-- category header -->
-      <div class="flex flex-col items-center w-full h-32 mt-32">
+      <div class="flex flex-col items-center w-full h-32 md:mt-32">
         <div class="flex flex-col items-center ">
           <h4 class="text-lg font-bold lg:text-3xl md:text-xl text-primary">
             {{ detailedCategories[categoryName].name }}
@@ -41,7 +42,7 @@
       </div>
 
       <!-- sub categories card -->
-      <div class="mt-4 mb-24 md:mt-16 ">
+      <div class="mt-12 mb-24 md:mt-16 ">
         <div
           class="grid w-full grid-cols-1 mx-auto lg:w-7/12 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 place-items-center place-content-center"
         >
@@ -51,10 +52,10 @@
               .subCategories"
             :key="subCategory.uid"
             data-aos="fade-up"
-            :data-aos-delay="idx * 50"
-            data-aos-duration="700"
+            :data-aos-delay="idx * 70"
+            data-aos-duration="500"
             data-aos-easing="ease-in-out"
-            class="w-48 h-48 "
+            class="w-full md:w-48 md:h-48"
           >
             <div class="w-full overflow-hidden rounded-lg h-36">
               <img
@@ -75,7 +76,7 @@
       <div class="relative">
         <div class="flex w-full ">
           <aside class="hidden md:block md:w-3/12">
-            <div class="sticky left-0 z-10 top-24">
+            <div style="top:5.5rem" class="sticky left-0 z-10">
               <MultiRangeSlider class="mb-4" @changed="handlePriceChange" />
 
               <SingleTextSelect
@@ -91,9 +92,9 @@
             </div>
           </aside>
 
-          <div class="w-full px-8 lg:w-9/12">
+          <div class="w-full px-0 md:px-8 lg:w-9/12">
             <!-- product sort dropdown -->
-            <div class="sticky left-0 z-20 pb-4 bg-primary top-24">
+            <div style="top:5.5rem" class="sticky left-0 z-20 pb-4 bg-primary ">
               <div
                 class="flex items-center justify-between w-full filters-header"
               >
@@ -126,10 +127,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <pre v-if="detailedCategories[categoryName] !== undefined">{{
-        detailedCategories[categoryName]
-      }}</pre> -->
     </div>
   </div>
 </template>

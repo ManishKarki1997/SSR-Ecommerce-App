@@ -1,16 +1,24 @@
 <template>
-  <div class="relative w-full py-24 bg-primary">
+  <div class="relative w-full py-8 pb-32 bg-primary">
     <div v-if="isLoadingProducts && !products" class="w-full h-32">
       <Spinner dark title="Fetching products" />
     </div>
 
     <!-- subcategory header -->
-    <div class="flex flex-col items-center w-full mt-32 mb-24">
+    <div class="flex flex-col items-center w-full mt-4 mb-24 md:mt-32">
       <div v-if="isLoadingSubcategory" class="relative w-full h-32">
         <Spinner dark title="Fetching subcategory" />
       </div>
 
       <div v-if="subCategory" class="flex flex-col items-center ">
+        <div class="w-full mb-8 overflow-hidden rounded-lg md:w-48 md:h-48">
+          <img
+            class="object-cover w-full h-full transition-all duration-300 transform cursor-pointer hover:scale-110"
+            :src="subCategory.imageUrl"
+            alt=""
+          />
+        </div>
+
         <h4 class="text-lg font-bold lg:text-3xl md:text-xl text-primary">
           {{ subCategory.name }}
         </h4>
@@ -34,7 +42,7 @@
     <div class="relative">
       <div class="flex w-full ">
         <aside class="hidden md:block md:w-3/12">
-          <div class="sticky left-0 z-10 top-24">
+          <div style="top:5.5rem" class="sticky left-0 z-10 ">
             <MultiRangeSlider class="mb-8" @changed="handlePriceChange" />
 
             <template v-if="subCategory">
@@ -51,13 +59,13 @@
           </div>
         </aside>
 
-        <div class="w-full px-8 lg:w-9/12">
+        <div class="w-full md:px-8 lg:w-9/12">
           <!-- product sort dropdown -->
-          <div class="sticky left-0 z-20 pb-4 bg-primary top-24">
+          <div style="top:5.5rem" class="sticky left-0 z-20 pb-4 bg-primary ">
             <div
               class="flex items-center justify-between w-full filters-header"
             >
-              <div class="flex items-center w-1/2 space-x-2">
+              <div class="flex items-center w-full space-x-2 lg:w-1/2">
                 <p class="font-semibold text-primary">Sort By</p>
                 <SelectDropdown
                   class="w-56"

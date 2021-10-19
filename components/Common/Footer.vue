@@ -1,5 +1,5 @@
 <template>
-  <footer v-if="showFooter" class="w-full h-48 px-6 py-6 lg:px-12 bg-secondary">
+  <footer v-if="showFooter" class="w-full px-6 py-6 lg:px-12 bg-secondary">
     <div class="grid grid-cols-1 gap-y-6 md:grid-cols-2 lg:grid-cols-4">
       <!-- brand info -->
       <div class="">

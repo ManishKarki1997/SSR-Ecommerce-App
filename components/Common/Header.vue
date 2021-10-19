@@ -196,9 +196,42 @@
                 </ul>
               </li>
 
-              <li class="flex items-center mt-auto space-x-4">
-                <BaseButton text>Login</BaseButton>
-                <BaseButton text type="primary" outlined>Register</BaseButton>
+              <li class="relative flex items-center mt-auto space-x-4">
+                <div
+                  v-if="!user"
+                  class="relative flex items-center mt-auto space-x-4"
+                >
+                  <BaseButton text>Login</BaseButton>
+                  <BaseButton text type="primary" outlined>Register</BaseButton>
+                </div>
+
+                <div v-if="user" class="flex space-x-4 ">
+                  <div class="w-10 h-10 rounded-full ">
+                    <img
+                      @click="handleClickUserAvatar"
+                      class="object-cover w-full h-full rounded-full cursor-pointer profile-image"
+                      :src="user.avatar"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <p class=" text-primary">{{ user.name }}</p>
+                    <p class="text-sm italic text-secondary">
+                      {{ user.email }}
+                    </p>
+                  </div>
+                </div>
+
+                <ContextMenu
+                  v-if="user && isProfileContextMenuActive"
+                  class="absolute z-50 w-56 bottom-12 right-2 bg-tertiary"
+                  :compact="false"
+                  :menuItems="profileContextMenuItems"
+                  trigger=".profile-image"
+                  @selected="handleSelectProfileMenuItem"
+                  @clickedOutside="handleClickOutsideProfileMenu"
+                >
+                </ContextMenu>
               </li>
             </ul>
           </div>
@@ -301,6 +334,9 @@ export default {
           this.$store.dispatch("auth/logoutUser");
         }
       }
+    },
+    handleLogout() {
+      this.$store.dispatch("auth/logoutUser");
     },
     handleClickOutsideProfileMenu() {
       this.isProfileContextMenuActive = false;
