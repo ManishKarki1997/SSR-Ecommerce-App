@@ -226,7 +226,7 @@ export default {
   mixins: [cartMixin, wishlistMixin],
   head() {
     return {
-      title: `${this.product.name} | Varya Commerce`,
+      title: `${this.product ? this.product.name : this.slug} | Varya Commerce`,
       meta: [
         {
           hid: "description",
