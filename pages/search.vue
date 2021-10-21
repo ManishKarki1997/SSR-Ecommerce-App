@@ -1,9 +1,5 @@
 <template>
   <div class="relative w-full py-16 bg-primary">
-    <div v-if="isLoadingProducts && !products" class="w-full h-32">
-      <Spinner dark title="Fetching products" />
-    </div>
-
     <!-- main -->
     <div class="relative">
       <div class="flex flex-col w-full md:flex-row ">
@@ -45,6 +41,10 @@
                 />
               </div>
             </div>
+          </div>
+
+          <div v-if="isLoadingProducts && !products" class="w-full h-32">
+            <Spinner dark title="Fetching products" />
           </div>
 
           <!-- products list -->

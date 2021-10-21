@@ -31,7 +31,7 @@
           {{ subCategory.name }}
         </h4>
 
-        <p class="my-2 text-secondary">
+        <p class="my-2 text-center text-secondary">
           {{ subCategory.description }}
         </p>
 
@@ -50,7 +50,7 @@
     <div class="relative">
       <div class="flex w-full ">
         <aside v-if="subCategory" class="hidden md:block md:w-3/12">
-          <div style="top:5.5rem" class="sticky left-0 z-50 ">
+          <div class="sticky left-0 z-50 top-20 ">
             <MultiRangeSlider class="mb-8" @changed="handlePriceChange" />
 
             <template v-if="subCategory">
@@ -69,11 +69,13 @@
 
         <div v-if="subCategory" class="w-full md:px-8 lg:w-9/12">
           <!-- product sort dropdown -->
-          <div style="top:5.5rem" class="sticky left-0 z-50 pb-4 bg-primary ">
+          <div class="sticky left-0 z-50 pb-4 top-20 bg-primary ">
             <div
               class="flex items-center justify-between w-full filters-header"
             >
-              <div class="flex items-center w-full space-x-2 lg:w-1/2">
+              <div
+                class="flex items-center w-full mt-4 space-x-2 md:mt-0 lg:w-1/2"
+              >
                 <p class="font-semibold text-primary">Sort By</p>
                 <SelectDropdown
                   class="w-56"
@@ -115,6 +117,53 @@
           </div>
         </div>
       </div>
+
+      <!-- mobile filters component -->
+      <div
+        v-if="!isMobileFiltersContentActive"
+        class="fixed z-50 block bottom-8 right-8 md-hidden"
+      >
+        <button
+          @click.stop="isMobileFiltersContentActive = true"
+          aria-label="Filter Menu Toggle Button"
+          class="px-2 py-2 ml-auto rounded md:hidden bg-tertiary"
+        >
+          <Icon name="filter" />
+        </button>
+      </div>
+
+      <!-- filters content -->
+      <div
+        class="fixed top-0 left-0 z-50 w-full h-screen overscroll-auto bg-primary"
+        v-if="isMobileFiltersContentActive"
+      >
+        <div class="flex flex-col h-full overflow-auto">
+          <div class="h-full px-6 mt-32">
+            <MultiRangeSlider class="mb-8" @changed="handlePriceChange" />
+
+            <template v-if="subCategory">
+              <SingleTextSelect
+                class="mb-4 mb:mb-8"
+                v-for="filter in subCategory.filters"
+                :key="'filter-' + filter.id"
+                :list-items="filter.filterOptions"
+                :filter-name="filter.name"
+                :minimized="true"
+                :extra-data="filter"
+                @selected="handleSelectSubcategoryFilter"
+              />
+            </template>
+          </div>
+
+          <button
+            @click.stop="isMobileFiltersContentActive = false"
+            aria-label="Filter Menu Toggle Button"
+            class="absolute px-2 py-2 ml-auto rounded bg-tertiary bottom-8 right-8"
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -147,6 +196,7 @@ export default {
       subCategoryName: "",
       isLoadingProducts: false,
       isLoadingSubcategory: false,
+      isMobileFiltersContentActive: false,
       categoryParams: null,
       sortParams: null,
       priceParams: {
@@ -278,7 +328,6 @@ export default {
       }
     },
     handleSelectSubcategoryFilter(filter, extraData) {
-      // console.log({ extraData, filter });
       if (this.isLoadingProducts) return;
 
       if (
@@ -293,6 +342,8 @@ export default {
       } else {
         this.subCategoryParams && delete this.subCategoryParams[extraData.name];
       }
+
+      this.isMobileFiltersContentActive = false;
       this.$fetch();
     },
     handleSelectFilter(filter) {
@@ -312,6 +363,7 @@ export default {
         min: value[0],
         max: value[1] || 10000
       };
+      this.isMobileFiltersContentActive = false;
       this.$fetch();
     }
   }

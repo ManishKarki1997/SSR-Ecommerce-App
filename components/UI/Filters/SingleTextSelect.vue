@@ -1,7 +1,9 @@
 <template>
   <div class="w-full bg-primary">
     <div class="flex items-center justify-between h-12 ">
-      <h4 class="text-xl font-semibold text-primary">{{ filterName }}</h4>
+      <h4 class="text-base font-semibold md:text-xl text-primary">
+        {{ filterName }}
+      </h4>
 
       <button @click="toggleMinimize">
         <Icon v-if="!isMinimized" name="minus" />
