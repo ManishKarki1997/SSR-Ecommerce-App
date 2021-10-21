@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap items-center justify-between w-full mb-4">
+  <div class="flex flex-wrap items-center justify-between w-full mb-8">
     <p class="text-lg lg:text-xl md:text-xl">
       <slot name="left" />
     </p>

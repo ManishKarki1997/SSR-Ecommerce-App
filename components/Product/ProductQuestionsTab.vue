@@ -190,7 +190,13 @@ export default {
     },
     handleQuestionBtnAction() {
       if (!this.user) {
-        return this.$router.push("/login");
+        this.$store.dispatch("addNotification", {
+          title: "Error",
+          description: "Please login first.",
+          type: "danger"
+        });
+        return;
+        //  this.$router.push("/login");
       }
 
       this.headerTitle = "Ask a question";

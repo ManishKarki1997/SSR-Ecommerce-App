@@ -16,11 +16,12 @@
         <div class="w-full md:w-5/12">
           <!-- selected image -->
           <div
-            class="w-full mb-4 overflow-hidden rounded-lg cursor-pointer h-72 md:h-96"
+            class="w-full mb-4 overflow-hidden rounded-lg cursor-pointer h-80 md:h-80"
           >
             <img
-              class="object-cover object-top w-full h-auto "
-              :src="activeProductImage.imageUrl"
+              v-lazy-load
+              class="object-cover object-top w-full h-full"
+              :data-src="activeProductImage.imageUrl"
               alt=""
             />
           </div>
@@ -34,8 +35,9 @@
               class="w-full h-48 overflow-hidden rounded-lg cursor-pointer"
             >
               <img
-                class="object-cover w-full h-auto "
-                :src="img.imageUrl"
+                v-lazy-load
+                class="object-cover w-full h-full "
+                :data-src="img.imageUrl"
                 alt=""
               />
             </div>
@@ -156,7 +158,7 @@
         <!-- product tab contents -->
         <div
           v-if="!isLoadingProduct && product"
-          class="px-8 py-8 tab-content-wrapper"
+          class="py-8 tab-content-wrapper"
         >
           <transition name="fade" mode="out-in">
             <ProductDescriptionTab

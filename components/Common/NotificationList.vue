@@ -1,5 +1,8 @@
 <template>
-  <div v-if="notifications.length > 0" class="notification-list-wrapper">
+  <div
+    v-if="notifications.length > 0"
+    class="w-11/12 mx-auto notification-list-wrapper md:w-4/12 md:ml-auto"
+  >
     <transition-group class="notification-list" tag="div" name="slide-in">
       <Notification
         v-for="notification in notifications"
@@ -37,7 +40,7 @@ export default {
   transform: translate(100%, 0);
 }
 .notification-list-wrapper {
-  width: 30vw;
+  /* width: 30vw; */
   height: 30vh;
   position: fixed;
   bottom: 1rem;
@@ -47,10 +50,10 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
 
-  @media (max-width: 360px) {
+  /* @media (max-width: 360px) {
     width: 100%;
     bottom: 0;
-  }
+  } */
 
   .notification-list {
     display: flex;

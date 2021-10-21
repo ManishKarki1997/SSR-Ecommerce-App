@@ -52,9 +52,10 @@
 
     <div class="w-full h-full overflow-hidden rounded-lg">
       <img
+        v-lazy-load
         v-if="product.images !== undefined && product.images.length > 0"
         class="object-cover w-full h-full"
-        :src="product.images[0].imageUrl"
+        :data-src="product.images[0].imageUrl"
         :alt="'Image for ' + product.name"
       />
     </div>

@@ -19,10 +19,7 @@
     <div v-if="isLoadingProducts && !products" class="relative w-full h-32">
       <Spinner dark title="Fetching products" />
     </div>
-    <div
-      class="grid w-full md:grid-cols-4 lg:grid-cols-4 gap-x-12 gap-y-48"
-      v-if="products"
-    >
+    <div class="products-grid" v-if="products">
       <ProductCard
         @click="handleSelectProduct(product)"
         v-for="(product, idx) in products"
@@ -74,7 +71,7 @@ export default {
     try {
       this.isLoadingProducts = true;
       const url = generateUrl("products/category", {
-        take: 4,
+        take: 5,
         categorySlug: this.categorySlug
       });
       const res = await this.$axios.$get(url);

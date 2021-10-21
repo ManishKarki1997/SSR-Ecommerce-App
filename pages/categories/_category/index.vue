@@ -173,7 +173,7 @@
       </div>
       <!-- filters content -->
       <div
-        class="fixed top-0 left-0 w-full h-screen overscroll-auto bg-primary"
+        class="fixed top-0 left-0 z-50 w-full h-screen overscroll-auto bg-primary"
         v-if="isMobileFiltersContentActive"
       >
         <div class="flex flex-col h-full">
@@ -276,7 +276,7 @@ export default {
       ]
     };
   },
-  async mounted() {
+  mounted() {
     this.categoryName = this.$route.params.category;
 
     this.queryParams = {
@@ -293,6 +293,7 @@ export default {
   },
   methods: {
     handleSubCategorySelected(subCategory) {
+      this.isMobileFiltersContentActive = false;
       this.$router.push(`/categories/${this.categoryName}/${subCategory.slug}`);
     },
     handlePriceChange(value) {

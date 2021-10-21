@@ -75,7 +75,7 @@ export default {
       isLoadingMoreProducts: false,
       pagination: {
         page: 1,
-        take: 4,
+        take: 8,
         skip: 0,
         hasNext: true
       }

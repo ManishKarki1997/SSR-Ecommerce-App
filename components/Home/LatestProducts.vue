@@ -73,7 +73,7 @@ export default {
       try {
         this.isLoadingLatestProducts = true;
         const res = await this.$store.dispatch("products/fetchProducts", {
-          take: 8
+          take: 10
         });
         this.$store.commit(
           "products/SET_LATEST_PRODUCTS",

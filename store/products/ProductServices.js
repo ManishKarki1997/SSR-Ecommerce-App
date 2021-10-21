@@ -5,6 +5,10 @@ export default $axios => ({
     const url = generateUrl("products", payload);
     return $axios.get(url);
   },
+  fetchFlashSaleProducts(payload) {
+    const url = generateUrl("products/flashSale", payload);
+    return $axios.get(url);
+  },
   fetchRelatedProducts(slug) {
     return $axios.get(`products/relatedProducts/${slug}`);
   },

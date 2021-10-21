@@ -5,6 +5,9 @@ const actions = {
   fetchRelatedProducts({ commit }, slug) {
     return this.$productRepository.fetchRelatedProducts(slug);
   },
+  fetchFlashSaleProducts({ commit }, slug) {
+    return this.$productRepository.fetchFlashSaleProducts(slug);
+  },
   fetchSearchedProducts({ commit }, slug) {
     return this.$productRepository.fetchSearchedProducts(slug);
   },
