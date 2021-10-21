@@ -96,14 +96,11 @@
               <MultiRangeSlider class="mb-4" @changed="handlePriceChange" />
 
               <SingleTextSelect
+                class="mt-10"
                 v-if="detailedCategories[categoryName] !== undefined"
                 :list-items="detailedCategories[categoryName].subCategories"
-                sub-text-key="_count.products"
+                sub-text-key="totalProducts"
                 filter-name="Subcategories"
-              />
-              <SingleTextSelect
-                :list-items="productsSortFilters"
-                filter-name="Product Type"
               />
             </div>
           </aside>
@@ -278,8 +275,14 @@ export default {
           "categories/ADD_CATEGORY_TO_DETAILED_CATEGORY",
           res.data.payload.category
         );
-        // this.subCategory = res.data.payload.category;
       } catch (error) {
+        if (error) {
+          this.$store.dispatch("addNotification", {
+            title: "Error",
+            description: "Couldn't fetch the products",
+            type: "danger"
+          });
+        }
       } finally {
         this.isLoadingCategory = false;
       }

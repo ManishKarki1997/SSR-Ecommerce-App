@@ -149,7 +149,10 @@ export default {
       isLoadingSubcategory: false,
       categoryParams: null,
       sortParams: null,
-      priceParams: null,
+      priceParams: {
+        min: 0,
+        max: 10000
+      },
       subCategoryParams: null,
       products: null,
       subCategory: null,
@@ -203,8 +206,8 @@ export default {
 
       const priceParams = {
         price: JSON.stringify({
-          min: 0,
-          max: 1600
+          min: this.priceParams.min,
+          max: this.priceParams.max
         })
       };
 
@@ -305,13 +308,10 @@ export default {
       this.$fetch();
     },
     handlePriceChange(value) {
-      const priceParams = {
-        price: JSON.stringify({
-          min: value[0],
-          max: value[1]
-        })
+      this.priceParams = {
+        min: value[0],
+        max: value[1] || 10000
       };
-      this.priceParams = priceParams;
       this.$fetch();
     }
   }

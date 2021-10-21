@@ -54,6 +54,12 @@ import constants from "@/utils/constants";
 import FormInput from "@/components/UI/FormInput.vue";
 
 export default {
+  props: {
+    initialValue: {
+      type: Array,
+      required: false
+    }
+  },
   components: {
     // VueRangeSlider,
     FormInput
@@ -79,7 +85,6 @@ export default {
         this.value[0] || 0,
         this.value[1] || this.max || 10000
       ];
-
       this.$emit("changed", validatedValue);
     }
   }

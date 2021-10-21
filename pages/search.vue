@@ -25,11 +25,11 @@
 
         <div class="w-full lg:w-9/12 md:px-8">
           <!-- product sort dropdown -->
-          <div class="sticky left-0 z-50 pb-4 bg-primary md:top-18 top-20">
+          <div class="sticky left-0 z-50 pb-4 bg-primary md:top-18 top-16">
             <div
-              class="flex flex-col items-center justify-between w-full md:flex-row filters-header"
+              class="flex flex-col items-center justify-between w-full -mt-16 md:flex-row filters-header md:mt-0"
             >
-              <div class="md:block">
+              <div class="hidden md:block">
                 <p>
                   Search results for <strong>`{{ searchQuery }}`</strong>
                 </p>
@@ -73,14 +73,14 @@
       <button
         @click.stop="isMobileFiltersContentActive = true"
         aria-label="Filter Menu Toggle Button"
-        class="px-2 py-2 ml-auto rounded bg-tertiary"
+        class="px-2 py-2 ml-auto rounded md:hidden bg-tertiary"
       >
         <Icon name="filter" />
       </button>
 
       <!-- filters content -->
       <div
-        class="fixed top-0 left-0 hidden w-full h-screen md:block overscroll-auto bg-primary"
+        class="fixed top-0 left-0 w-full h-screen overscroll-auto bg-primary"
         v-if="isMobileFiltersContentActive"
       >
         <div class="relative flex flex-col h-full">
@@ -238,7 +238,9 @@ export default {
       this.fetchProducts();
     },
     handleSelectCategoryFilter(category) {
-      this.categorySlug = category.slug;
+      if (category) {
+        this.categorySlug = category.slug;
+      }
       this.isMobileFiltersContentActive = false;
 
       this.fetchProducts();
