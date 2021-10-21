@@ -2,7 +2,7 @@ import constants from "./constants";
 const { DISCOUNT_UNIT_PERCENTAGE, CURRENCY } = constants;
 
 const calculateProductPriceAndDiscount = product => {
-  if (!product)
+  if (!product || (product && !product.pricing))
     return {
       currency: CURRENCY,
       originalPrice: 0,
@@ -11,8 +11,7 @@ const calculateProductPriceAndDiscount = product => {
       offerValidUntil: null
     };
 
-  const productBasePrice =
-    product.pricing.length > 0 && product.pricing[0].basePrice;
+  const productBasePrice = product.pricing[0].basePrice;
 
   if (
     !productBasePrice ||

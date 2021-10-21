@@ -4,7 +4,7 @@ img.isLoading {
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: var(--primary-background);
+  background-color: var(--tertiary-background);
 
   &::after {
     position: absolute;

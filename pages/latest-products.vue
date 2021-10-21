@@ -25,7 +25,7 @@
     </div>
 
     <div
-      class="grid w-full md:grid-cols-4 lg:grid-cols-4 gap-x-6 gap-y-48"
+      class="products-grid"
       v-if="!isLoadingLatestProducts && latestProducts"
     >
       <ProductCard
@@ -68,6 +68,18 @@ export default {
     ProductCard,
     Icon,
     Spinner
+  },
+  head() {
+    return {
+      title: `Latest Products | Varya Commerce`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: `All the newly stocked latest products available. | Varya Commerce`
+        }
+      ]
+    };
   },
   data() {
     return {

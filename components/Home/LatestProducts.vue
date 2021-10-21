@@ -7,7 +7,7 @@
 
       <template #right>
         <button
-          @click="$router.push('/latestProducts')"
+          @click="$router.push('/latest-products')"
           class="flex items-center text-secondary "
         >
           <span>Explore More</span>

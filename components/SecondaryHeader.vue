@@ -41,7 +41,7 @@
         v-if="headerCategories"
         class="font-semibold cursor-pointer hover:text-accent"
       >
-        <nuxt-link to="/latestProducts">
+        <nuxt-link to="/latest-products">
           Latest Arrivals
         </nuxt-link>
       </li>

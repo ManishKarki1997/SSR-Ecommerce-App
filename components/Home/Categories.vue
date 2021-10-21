@@ -22,7 +22,8 @@
       >
         <div class="w-full h-48 overflow-hidden rounded-lg md:h-36">
           <img
-            :src="category.imageUrl"
+            v-lazy-load
+            :data-src="category.imageUrl"
             :alt="'category image for ' + category.name"
             class="object-cover w-full h-full transition-all duration-300 transform cursor-pointer hover:scale-110"
           />
