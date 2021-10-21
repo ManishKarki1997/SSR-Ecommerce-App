@@ -4,14 +4,23 @@
       <FlashSale class="mt-56 " />
       <HomeProducts class="mt-56" />
       <HomeCategories class="mt-56" />
-      <HomeCategoryBlock class="mt-48" categorySlug="laptops" />
-      <HomeCategoryBlock class="mt-48" categorySlug="consoles" />
-      <HomeCategoryBlock class="mt-48" categorySlug="accessories" />
+      <HomeCategoryBlock
+        :category-slug="categorySlugs[idx]"
+        v-for="(products, idx) in productsResponseArr"
+        :key="'home-category-' + idx"
+        :products="products"
+        class="mt-48"
+        categorySlug="laptops"
+      />
+      <!-- <HomeCategoryBlock class="mt-48" categorySlug="consoles" />
+      <HomeCategoryBlock class="mt-48" categorySlug="accessories" /> -->
     </div>
   </div>
 </template>
 
 <script>
+import { generateUrl } from "@/utils";
+
 import HomeCategories from "@/components/Home/Categories.vue";
 import HomeProducts from "@/components/Home/LatestProducts.vue";
 import HomeCategoryBlock from "@/components/Home/HomeCategoryBlock.vue";
@@ -35,6 +44,35 @@ export default {
         }
       ]
     };
+  },
+  data() {
+    return {
+      categorySlugs: ["laptops", "consoles", "accessories"],
+      productsResponseArr: null
+    };
+  },
+  async fetch() {
+    try {
+      const res = await Promise.all(
+        this.categorySlugs.map(s => this.fetchCategoryProducts(s))
+      );
+      this.productsResponseArr = res
+        .map(r => r.payload.products)
+        .filter(p => p.length > 0);
+    } catch (error) {
+      if (error) {
+        console.log(error);
+      }
+    }
+  },
+  methods: {
+    fetchCategoryProducts(categorySlug) {
+      const url = generateUrl("products/category", {
+        take: 5,
+        categorySlug
+      });
+      return this.$axios.$get(url);
+    }
   }
 };
 </script>

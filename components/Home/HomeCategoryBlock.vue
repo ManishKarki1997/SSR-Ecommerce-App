@@ -44,6 +44,10 @@ export default {
     categorySlug: {
       type: String,
       required: true
+    },
+    products: {
+      type: Array,
+      required: true
     }
   },
   components: {
@@ -63,27 +67,27 @@ export default {
   },
   data() {
     return {
-      isLoadingProducts: false,
-      products: null
+      isLoadingProducts: false
+      // products: null
     };
   },
-  async fetch() {
-    try {
-      this.isLoadingProducts = true;
-      const url = generateUrl("products/category", {
-        take: 5,
-        categorySlug: this.categorySlug
-      });
-      const res = await this.$axios.$get(url);
-      this.products = res.payload.products;
-    } catch (error) {
-      if (error) {
-        console.log(error);
-      }
-    } finally {
-      this.isLoadingProduct = false;
-    }
-  },
+  // async fetch() {
+  //   try {
+  //     this.isLoadingProducts = true;
+  //     const url = generateUrl("products/category", {
+  //       take: 5,
+  //       categorySlug: this.categorySlug
+  //     });
+  //     const res = await this.$axios.$get(url);
+  //     this.products = res.payload.products;
+  //   } catch (error) {
+  //     if (error) {
+  //       console.log(error);
+  //     }
+  //   } finally {
+  //     this.isLoadingProduct = false;
+  //   }
+  // },
   methods: {}
 };
 </script>
