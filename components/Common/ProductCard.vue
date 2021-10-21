@@ -136,6 +136,7 @@ import { mapState } from "vuex";
 import Icon from "@/components/UI/Icon.vue";
 import ContextMenu from "@/components/Common/ContextMenu.vue";
 import { calculateProductPriceAndDiscount } from "~/utils";
+import { calculateCountdown } from "@/utils/dateFns";
 import { wishlistMixin } from "@/mixins/wishlist";
 import { cartMixin } from "@/mixins/cart";
 import constants from "@/utils/constants";
@@ -167,10 +168,9 @@ export default {
     Icon,
     ContextMenu
   },
-  data() {
-    return {};
-  },
+
   mixins: [wishlistMixin, cartMixin],
+
   computed: {
     ...mapState("auth", ["wishlist", "user"]),
 
@@ -204,6 +204,7 @@ export default {
   },
   data() {
     return {
+      tempDate: Date.now(),
       contextMenuItems: [
         {
           name: "Quick Edit",

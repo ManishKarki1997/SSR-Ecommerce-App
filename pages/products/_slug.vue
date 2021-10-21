@@ -98,6 +98,13 @@
             </div>
           </div>
 
+          <!-- sales countdown -->
+
+          <div v-if="saleCountdown" class="flex items-center my-8 space-x-2">
+            <h4>Sale ends in</h4>
+            <p class="font-bold text-red-500">{{ saleCountdown }}</p>
+          </div>
+
           <!-- add to cart / wishlist -->
           <div class="flex flex-row flex-wrap mt-6">
             <div class="mb-4 mr-0 sm:mr-4 sm:mb-4">
@@ -213,6 +220,7 @@ import Spinner from "@/components/Common/Spinner.vue";
 import calculateProductPriceAndDiscount from "@/utils/calculateProductPriceAndDiscount";
 import { cartMixin } from "@/mixins/cart.js";
 import { wishlistMixin } from "@/mixins/wishlist.js";
+import { calculateCountdown } from "@/utils/dateFns";
 
 export default {
   components: {
@@ -254,6 +262,8 @@ export default {
   },
   data() {
     return {
+      tempDate: Date.now(),
+      countdownTimerInterval: null,
       slug: "",
       product: null,
       activeImageId: null,
@@ -286,6 +296,22 @@ export default {
   },
   computed: {
     ...mapState("auth", ["user", "cart", "wishlist"]),
+
+    saleCountdown() {
+      if (
+        !this.product ||
+        (this.product && this.product.productDiscount.length === 0) ||
+        !this.product.productDiscount[0].validUntil
+      )
+        return null;
+
+      const discountCountdown = calculateCountdown(
+        this.tempDate,
+        this.product.productDiscount[0].validUntil
+      );
+
+      return discountCountdown;
+    },
 
     isProductPresentInWishlist() {
       return (
@@ -325,6 +351,10 @@ export default {
       );
       this.product = res.payload.product;
 
+      if (this.product.productDiscount.length === 0) {
+        clearInterval(this.countdownTimerInterval);
+      }
+
       this.activeImageId =
         this.product.images.find(x => x.isDefaultImage).id ||
         this.product.images[0].id;
@@ -335,6 +365,11 @@ export default {
     } finally {
       this.isLoadingProduct = false;
     }
+  },
+  mounted() {
+    this.countdownTimerInterval = setInterval(() => {
+      this.tempDate = Date.now();
+    }, 1000);
   },
   methods: {
     async onClickAddItemToWishlist() {
