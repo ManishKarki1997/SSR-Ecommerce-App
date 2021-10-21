@@ -28,7 +28,7 @@
           <div>
             <h3 class="my-2 text-lg text-accent">
               <span>{{ constants.CURRENCY }}</span>
-              <span>{{ product.price }}</span>
+              <!-- <span>{{ product.price }}</span> -->
             </h3>
           </div>
 

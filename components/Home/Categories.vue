@@ -20,7 +20,7 @@
         data-aos-easing="ease-in-out"
         class=""
       >
-        <div class="w-full overflow-hidden rounded-lg h-36">
+        <div class="w-full h-48 overflow-hidden rounded-lg md:h-36">
           <img
             :src="category.imageUrl"
             :alt="'category image for ' + category.name"

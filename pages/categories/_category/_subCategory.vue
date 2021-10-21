@@ -276,6 +276,8 @@ export default {
     },
     handleSelectSubcategoryFilter(filter, extraData) {
       // console.log({ extraData, filter });
+      if (this.isLoadingProducts) return;
+
       if (
         !this.subCategoryParams ||
         (this.subCategoryParams &&
@@ -291,6 +293,8 @@ export default {
       this.$fetch();
     },
     handleSelectFilter(filter) {
+      if (this.isLoadingProducts) return;
+
       const sortParams = {
         sort: JSON.stringify({
           name: filter.filterName,

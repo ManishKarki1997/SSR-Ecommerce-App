@@ -315,6 +315,8 @@ export default {
     },
 
     handleSelectFilter(filter) {
+      if (this.isLoadingProducts) return;
+
       const sortParams = {
         sort: JSON.stringify({
           name: filter.filterName,

@@ -58,7 +58,7 @@
             <td class="p-3">
               <p class="text-base text-primary">
                 <span>{{ constants.CURRENCY }}</span>
-                <span>{{ wishlistItem.product.price }}</span>
+                <!-- <span>{{ wishlistItem.product.price }}</span> -->
               </p>
             </td>
 

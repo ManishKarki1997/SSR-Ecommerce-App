@@ -94,8 +94,8 @@ export default {
   },
   serverMiddleware: ["~/serverMiddleware/selectiveSSR.js"],
   axios: {
-    baseURL: process.env.BACKEND_API_URL
-    // baseURL: "http://localhost:4000/api/",
+    // baseURL: process.env.BACKEND_API_URL
+    baseURL: "http://localhost:4000/api/"
     // baseURL: "https://lyra-ecommerce-app.herokuapp.com/api/",
     // https: false
   },

@@ -6,14 +6,15 @@
 
     <!-- main -->
     <div class="relative">
-      <div class="flex w-full ">
-        <aside class=" md:w-3/12">
+      <div class="flex flex-col w-full md:flex-row ">
+        <aside class="hidden md:block md:w-3/12">
           <div class="sticky left-0 z-10 top-24">
             <MultiRangeSlider class="mb-4" @changed="handlePriceChange" />
 
             <template v-if="categorySelectItems">
               <SingleTextSelect
                 class="mb-8"
+                :minimized="true"
                 :list-items="categorySelectItems"
                 filter-name="Category"
                 @selected="handleSelectCategoryFilter"
@@ -22,18 +23,18 @@
           </div>
         </aside>
 
-        <div class="w-full px-8 lg:w-9/12">
+        <div class="w-full lg:w-9/12 md:px-8">
           <!-- product sort dropdown -->
-          <div class="sticky left-0 z-20 pb-4 bg-primary top-24">
+          <div class="sticky left-0 z-50 pb-4 bg-primary md:top-18 top-20">
             <div
-              class="flex items-center justify-between w-full filters-header"
+              class="flex flex-col items-center justify-between w-full md:flex-row filters-header"
             >
-              <div class="">
+              <div class="md:block">
                 <p>
                   Search results for <strong>`{{ searchQuery }}`</strong>
                 </p>
               </div>
-              <div class="flex items-center space-x-2">
+              <div class="flex items-center pt-6 space-x-2 md:pt-0">
                 <p class="font-semibold text-primary">Sort By</p>
                 <SelectDropdown
                   class="w-56"
@@ -66,6 +67,47 @@
         </div>
       </div>
     </div>
+
+    <!-- mobile filters component -->
+    <div class="fixed z-50 block bottom-8 right-8 md-hidden">
+      <button
+        @click.stop="isMobileFiltersContentActive = true"
+        aria-label="Filter Menu Toggle Button"
+        class="px-2 py-2 ml-auto rounded bg-tertiary"
+      >
+        <Icon name="filter" />
+      </button>
+
+      <!-- filters content -->
+      <div
+        class="fixed top-0 left-0 hidden w-full h-screen md:block overscroll-auto bg-primary"
+        v-if="isMobileFiltersContentActive"
+      >
+        <div class="relative flex flex-col h-full">
+          <div class="h-full px-6 mt-32">
+            <MultiRangeSlider class="mb-4" @changed="handlePriceChange" />
+
+            <template v-if="categorySelectItems">
+              <SingleTextSelect
+                class="mb-8"
+                :minimized="true"
+                :list-items="categorySelectItems"
+                filter-name="Category"
+                @selected="handleSelectCategoryFilter"
+              />
+            </template>
+          </div>
+
+          <button
+            @click.stop="isMobileFiltersContentActive = false"
+            aria-label="Filter Menu Toggle Button"
+            class="absolute px-2 py-2 ml-auto rounded bg-tertiary bottom-8 right-8"
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,6 +120,7 @@ import SelectDropdown from "@/components/UI/Select.vue";
 import ProductCard from "@/components/Common/ProductCard.vue";
 import SingleTextSelect from "@/components/UI/Filters/SingleTextSelect.vue";
 import MultiRangeSlider from "@/components/UI/Filters/MultiRangeSlider.vue";
+import Icon from "@/components/UI/Icon.vue";
 
 import { cartMixin } from "@/mixins/cart.js";
 import { wishlistMixin } from "@/mixins/wishlist.js";
@@ -88,11 +131,13 @@ export default {
     SingleTextSelect,
     MultiRangeSlider,
     Spinner,
-    SelectDropdown
+    SelectDropdown,
+    Icon
   },
   data() {
     return {
       isLoadingProducts: false,
+      isMobileFiltersContentActive: false,
       sortParams: null,
       priceParams: null,
       productsSortFilters: [
@@ -189,10 +234,13 @@ export default {
         })
       };
       this.priceParams = priceParams;
+      this.isMobileFiltersContentActive = false;
       this.fetchProducts();
     },
     handleSelectCategoryFilter(category) {
       this.categorySlug = category.slug;
+      this.isMobileFiltersContentActive = false;
+
       this.fetchProducts();
     }
   }

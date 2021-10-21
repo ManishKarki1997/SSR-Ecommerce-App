@@ -63,9 +63,9 @@
     <div
       v-if="productDiscountAndPrice.discount"
       style="top:-12px;left:-12px;"
-      class="absolute top-0 left-0 z-30 flex items-center justify-center px-4 py-1 text-white rounded bg-btnPrimary"
+      class="absolute top-0 left-0 z-30 flex items-center justify-center px-4 py-1 text-white rounded bg-btnDanger"
     >
-      <p>-{{ productDiscountAndPrice.discount > 0 }}%</p>
+      <p>-{{ productDiscountAndPrice.discount }}</p>
     </div>
 
     <div class="mt-2">
@@ -85,13 +85,17 @@
 
       <div class="flex items-center space-x-2 pricing">
         <h6 class="text-base font-medium text-accent">
-          ${{ productDiscountAndPrice.discountedPrice }}
+          ${{ parseFloat(productDiscountAndPrice.discountedPrice).toFixed(2) }}
         </h6>
         <p
           v-if="productDiscountAndPrice.discount"
           class="text-red-300 line-through "
         >
-          ${{ productDiscountAndPrice.originalPrice }}
+          <span>
+            {{
+              parseFloat(productDiscountAndPrice.originalPrice).toFixed(2)
+            }}</span
+          >
         </p>
       </div>
     </div>
@@ -133,6 +137,7 @@ import ContextMenu from "@/components/Common/ContextMenu.vue";
 import { calculateProductPriceAndDiscount } from "~/utils";
 import { wishlistMixin } from "@/mixins/wishlist";
 import { cartMixin } from "@/mixins/cart";
+import constants from "@/utils/constants";
 
 export default {
   props: {
@@ -167,6 +172,11 @@ export default {
   mixins: [wishlistMixin, cartMixin],
   computed: {
     ...mapState("auth", ["wishlist", "user"]),
+
+    appConstants() {
+      return constants;
+    },
+
     showContextMenuIcon() {
       return this.$route.path.startsWith(`/admin`);
     },

@@ -80,6 +80,10 @@ export default {
     extraData: {
       type: [Object, Array],
       required: false
+    },
+    minimized: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -89,6 +93,8 @@ export default {
     };
   },
   mounted() {
+    this.isMinimized = this.minimized;
+
     if (this.enableDefaultSelect) {
       this.selectedItem =
         this.listItems && this.listItems.length > 0 && this.listItems[0];
@@ -104,7 +110,8 @@ export default {
       } else {
         this.selectedItem = null;
       }
-      this.$emit("selected", item, this.extraData);
+
+      this.$emit("selected", this.selectedItem, this.extraData);
     },
     resolveObjectAccessUsingKey(obj, key) {
       return objectKeyAccessByStringResolve(key, obj);
