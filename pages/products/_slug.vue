@@ -16,11 +16,11 @@
         <div class="w-full md:w-5/12">
           <!-- selected image -->
           <div
-            class="w-full mb-4 overflow-hidden rounded-lg cursor-pointer h-80 md:h-80"
+            class="w-full mb-4 overflow-hidden rounded-lg cursor-pointer h-80 md:h-96"
           >
             <img
               v-lazy-load
-              class="object-cover object-top w-full h-full"
+              class="object-cover w-full h-full"
               :data-src="activeProductImage.imageUrl"
               alt=""
             />

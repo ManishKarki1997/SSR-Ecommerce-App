@@ -5,13 +5,13 @@
       <HomeProducts class="mt-56" />
       <HomeCategories class="mt-56" />
       <HomeCategoryBlock
-        :category-slug="categorySlugs[idx]"
         v-for="(products, idx) in productsResponseArr"
         :key="'home-category-' + idx"
+        :category-slug="categorySlugs[idx]"
         :products="products"
-        class="mt-48"
-        categorySlug="laptops"
+        class="mt-36"
       />
+
       <!-- <HomeCategoryBlock class="mt-48" categorySlug="consoles" />
       <HomeCategoryBlock class="mt-48" categorySlug="accessories" /> -->
     </div>

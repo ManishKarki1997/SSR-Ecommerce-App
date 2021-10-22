@@ -17,7 +17,7 @@
         <button
           @click.stop="onClickWishlistProduct"
           v-if="!isInWishlist"
-          class="invisible px-1 py-1 rounded-full icon-wrapper outlined heart-icon group-hover:visible "
+          class="visible px-1 py-1 rounded-full md:invisible icon-wrapper outlined heart-icon group-hover:visible "
         >
           <Icon name="heart" class="w-6 h-6" />
         </button>
@@ -35,7 +35,7 @@
         <button
           @click.stop="onClickAddProductToCart"
           v-if="!checkIfProductPresentInCart"
-          class="invisible px-1 py-1 rounded-full group-hover:visible icon-wrapper cart-icon outlined"
+          class="visible px-1 py-1 rounded-full md:invisible group-hover:visible icon-wrapper cart-icon outlined"
         >
           <Icon name="cart-fill" class="w-6 h-6" />
         </button>
@@ -43,7 +43,7 @@
         <button
           @click.stop="onClickAddProductToCart"
           v-if="checkIfProductPresentInCart"
-          class="invisible icon-wrapper group-hover:visible cart-icon filled"
+          class="visible md:invisible icon-wrapper group-hover:visible cart-icon filled"
         >
           <Icon class="" name="cart-fill" />
         </button>

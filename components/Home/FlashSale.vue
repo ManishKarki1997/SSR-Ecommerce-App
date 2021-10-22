@@ -1,5 +1,10 @@
 <template>
-  <div class="w-full bg-primary">
+  <div
+    v-if="
+      !isLoadingProducts && flashSaleProducts && flashSaleProducts.length > 0
+    "
+    class="w-full bg-primary"
+  >
     <BlockHeaderUI>
       <template #left>
         Flash Sales

@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-16 pb-32">
+  <div class="pt-16 pb-48">
     <BlockHeaderUI>
       <template #left>
         Latest Products
@@ -122,7 +122,7 @@ export default {
       }
 
       await this.$router.push({
-        path: "latestProducts",
+        path: "latest-products",
         query: { page: this.pagination.page }
       });
 

@@ -1,11 +1,9 @@
 <template>
   <div
-    style="height:calc(100vh - 10rem)"
-    class="flex items-center justify-center bg-transparent sm:px-6 lg:px-8"
+    style="min-height:40vh"
+    class="flex justify-center px-0 -mt-8 bg-transparent md:mt-0 md:items-center lg:px-8"
   >
-    <div
-      class="w-full max-w-xl px-6 py-8 mt-32 space-y-8 rounded-lg bg-secondary"
-    >
+    <div class="w-full max-w-lg py-8 space-y-8 rounded-lg bg-secondary">
       <div>
         <div class="flex justify-center w-full text-indigo-600">
           <Icon

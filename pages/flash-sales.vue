@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-16 pb-32">
+  <div class="pt-16 pb-48">
     <BlockHeaderUI>
       <template #left>
         Flash Sales
