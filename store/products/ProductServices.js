@@ -55,6 +55,16 @@ export default $axios => ({
       withCredentials: true
     });
   },
+  updateProductDiscount(payload) {
+    return $axios.put("products/discount", payload, {
+      withCredentials: true
+    });
+  },
+  quickUpdateProduct(payload) {
+    return $axios.put("products/quickEdit", payload, {
+      withCredentials: true
+    });
+  },
   updateProduct(payload) {
     return $axios.put("products", payload, {
       withCredentials: true

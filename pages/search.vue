@@ -238,9 +238,19 @@ export default {
       this.fetchProducts();
     },
     handleSelectCategoryFilter(category) {
-      if (category) {
+      if (!category) {
+        this.categorySlug = "";
+        this.fetchProducts();
+
+        return;
+      }
+
+      if (this.categorySlug === category.slug) {
+        this.categorySlug = "";
+      } else {
         this.categorySlug = category.slug;
       }
+
       this.isMobileFiltersContentActive = false;
 
       this.fetchProducts();

@@ -90,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss">
-.sidebar-content-wrapper {
+/* .sidebar-content-wrapper {
   transform: translateX(600px);
   transition: all 0.3s;
   opacity: 0;
@@ -99,5 +99,5 @@ export default {
     transform: translateX(0px);
     opacity: 1;
   }
-}
+} */
 </style>

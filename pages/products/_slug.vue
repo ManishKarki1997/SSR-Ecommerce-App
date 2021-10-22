@@ -50,27 +50,36 @@
               {{ product.name }}
             </h4>
 
-            <div class="flex items-center mb-6 space-x-4">
-              <h3 class="my-2 text-2xl text-accent">
-                <span>{{ productPricingDetails.currency }}</span>
-                <span>{{ productPricingDetails.discountedPrice }}</span>
-              </h3>
+            <client-only>
+              <div class="flex items-center mb-6 space-x-4">
+                <h3 class="my-2 text-2xl text-accent">
+                  <span>{{ constants.CURRENCY }}</span>
+                  <span>{{ productPricingDetails.discountedPrice }}</span>
+                </h3>
 
-              <h3
-                v-if="productPricingDetails.discount > 0"
-                class="my-2 ml-4 line-through text-xxl text-secondary"
-              >
-                <span>{{ productPricingDetails.currency }}</span>
-                <span>{{ productPricingDetails.originalPrice }}</span>
-              </h3>
+                <h3
+                  v-if="productPricingDetails.discountAmt > 0"
+                  class="my-2 ml-4 text-lg line-through text-secondary"
+                >
+                  <span>{{ constants.CURRENCY }}</span>
+                  <span>{{ productPricingDetails.originalPrice }}</span>
+                </h3>
 
-              <div
-                v-if="productPricingDetails.discount > 0"
-                class="px-2 py-1 text-white bg-red-500 rounded"
-              >
-                {{ productPricingDetails.discount }}% off
+                <p
+                  v-if="productPricingDetails.discountAmt > 0"
+                  class="px-2 py-1 text-sm text-white bg-red-500 rounded"
+                >
+                  -{{ productPricingDetails.discount }}
+                </p>
+
+                <div
+                  v-if="productPricingDetails.discount > 0"
+                  class="px-2 py-1 text-white bg-red-500 rounded"
+                >
+                  {{ productPricingDetails.discount }}% off
+                </div>
               </div>
-            </div>
+            </client-only>
 
             <p class="font-normal leading-7 text-secondary">
               {{ product.description }}
@@ -221,6 +230,7 @@ import calculateProductPriceAndDiscount from "@/utils/calculateProductPriceAndDi
 import { cartMixin } from "@/mixins/cart.js";
 import { wishlistMixin } from "@/mixins/wishlist.js";
 import { calculateCountdown } from "@/utils/dateFns";
+import constants from "@/utils/constants";
 
 export default {
   components: {
@@ -261,6 +271,7 @@ export default {
     };
   },
   data() {
+    this.constants = constants;
     return {
       tempDate: Date.now(),
       countdownTimerInterval: null,

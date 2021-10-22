@@ -415,7 +415,6 @@ export default {
         ...x,
         filterType: x.filterType === "MULTIPLE_SELECT"
       }));
-      console.log(this.filters);
 
       this.filters.forEach(x => {
         this.temporaryNewFilterNamesObj = {

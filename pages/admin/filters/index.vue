@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen ">
+  <div class="min-h-screen pb-24">
     <AdminPageHeader title="Filters">
       <div class="flex items-center space-x-2">
         <BaseButton
@@ -171,10 +171,16 @@ export default {
             filters: [x]
           };
         } else {
-          groupedFilters[x.subCategoryName] = {
-            ...groupedFilters[x.subCategoryName],
-            filters: [...groupedFilters[x.subCategoryName].filters, x]
-          };
+          if (
+            !groupedFilters[x.subCategoryName].filters.find(
+              f => f.name === x.name
+            )
+          ) {
+            groupedFilters[x.subCategoryName] = {
+              ...groupedFilters[x.subCategoryName],
+              filters: [...groupedFilters[x.subCategoryName].filters, x]
+            };
+          }
         }
       });
 

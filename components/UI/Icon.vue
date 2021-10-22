@@ -9,6 +9,7 @@
 
 <script>
 const icons = {
+  coupon: require("../../assets/icons/coupon.svg?inline"),
   filter: require("../../assets/icons/filter.svg?inline"),
   pen: require("../../assets/icons/pen.svg?inline"),
   eye: require("../../assets/icons/eye.svg?inline"),

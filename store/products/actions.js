@@ -26,6 +26,12 @@ const actions = {
   addProduct({ commit }, payload) {
     return this.$productRepository.addProduct(payload);
   },
+  updateProductDiscount({ commit }, payload) {
+    return this.$productRepository.updateProductDiscount(payload);
+  },
+  quickUpdateProduct({ commit }, payload) {
+    return this.$productRepository.quickUpdateProduct(payload);
+  },
   updateProduct({ commit }, payload) {
     return this.$productRepository.updateProduct(payload);
   },

@@ -49,6 +49,7 @@
       <input
         :id="inputName"
         :name="inputName"
+        :step="step"
         :type="type"
         :value="value"
         class="block w-full h-full placeholder-gray-500 bg-transparent appearance-none focus:outline-none sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 focus:z-10"
@@ -97,6 +98,10 @@ export default {
     showLabel: {
       type: Boolean,
       default: true
+    },
+    step: {
+      type: String,
+      required: false
     },
     showRequiredFieldAsterisk: {
       type: Boolean,

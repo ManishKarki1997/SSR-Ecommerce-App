@@ -66,13 +66,13 @@
         <li
           v-for="listItem in listItems"
           :key="listItem.id || listItem.name"
-          :class="{ 'pl-3': listItem.imageUrl !== undefined }"
-          class="relative py-2 my-2 rounded-lg cursor-pointer select-none group text-primary pr-9 hover:bg-btnPrimary hover:text-white"
+          :class="{ 'pl-3 pr-9': listItem.imageUrl !== undefined }"
+          class="relative py-2 my-2 rounded-lg cursor-pointer select-none group text-primary hover:bg-btnPrimary hover:text-white"
           id="listbox-option-0"
           role="option"
           @click="handleSelectItem(listItem)"
         >
-          <div class="flex items-center">
+          <div class="flex items-center justify-center">
             <div
               v-if="listItem.imageUrl !== undefined"
               class="flex-shrink-0 w-6 h-6 overflow-hidden rounded-full"
@@ -84,7 +84,10 @@
               />
             </div>
 
-            <span class="block ml-3 font-normal truncate">
+            <span
+              :class="[listItems.imageUrl === undefined ? 'ml-0' : 'ml-3 ']"
+              class="block font-normal truncate"
+            >
               {{ listItem.name }}
             </span>
           </div>
@@ -167,8 +170,17 @@ export default {
       }
     }
   },
+  watch: {
+    initialValue: {
+      handler(val) {
+        if (val) {
+          this.initial = val;
+        }
+      },
+      immediate: true
+    }
+  },
   mounted() {
-    this.initial = this.initialValue;
     document.addEventListener("click", e => this.handleClickOutsideListener(e));
   },
   beforeDestroy() {
