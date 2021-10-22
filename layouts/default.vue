@@ -48,6 +48,7 @@ export default {
   },
   computed: {
     ...mapState(["alreadyTriedLogin", "isLoggedIn"]),
+    ...mapState("auth", ["user", "attemptedLogin"]),
     showNavbar() {
       return !this.pagesToDisableNavbar.some(x =>
         this.$route.path.startsWith(`/${x}`)
@@ -85,7 +86,7 @@ export default {
   },
   mounted() {
     this.fetchBrandInfo();
-    this.fetchLoggedInUser();
+    // this.fetchLoggedInUser();
     this.fetchHeaderCategories();
 
     AOS.init();
@@ -155,16 +156,22 @@ export default {
     localize("en", dict);
 
     // for now, check localstorage logged in
-    // if (window.localStorage.getItem("varya-commerce-loggedin")) {
-    //   this.fetchLoggedInUser();
-    // }
+    if (process.client) {
+      if (window.localStorage.getItem("varya-commerce-loggedin")) {
+        this.fetchLoggedInUser();
+      }
+    }
   },
   methods: {
     async fetchLoggedInUser() {
-      if (this.alreadyTriedLogin && !this.isLoggedIn) return;
+      if (this.attemptedLogin && !this.user) {
+        window.localStorage.setItem("varya-commerce-loggedin", null);
+        return;
+      }
       try {
         this.$store.commit("auth/SET_LOADING_USER", true);
         const res = await this.$store.dispatch("auth/fetchCurrentUser");
+        this.$store.commit("auth/SET_ATTEMPTED_LOGIN", true);
 
         if (res.data.payload.user !== undefined) {
           this.$store.commit("SET_IS_LOGGED_IN", true);

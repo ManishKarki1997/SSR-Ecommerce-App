@@ -163,10 +163,11 @@ export default {
       this.allFilters.forEach(x => {
         if (groupedFilters[x.subCategoryName] === undefined) {
           // no filter with this subCategory exists, just set it
+          console.log(x);
           groupedFilters[x.subCategoryName] = {
             subCategoryName: x.subCategoryName,
             categoryName: x.categoryName,
-            imageUrl: x.category.imageUrl,
+            imageUrl: x.category?.imageUrl,
             filters: [x]
           };
         } else {

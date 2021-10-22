@@ -2,6 +2,9 @@ const mutations = {
   SET_LOADING_USER(state, isLoadingUser) {
     state.isLoadingUser = isLoadingUser;
   },
+  SET_ATTEMPTED_LOGIN(state, attemptedLogin) {
+    state.attemptedLogin = attemptedLogin;
+  },
   SET_USER(state, user) {
     state.user = user;
   },

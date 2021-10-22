@@ -1,5 +1,6 @@
 const state = () => ({
   isLoadingUser: false,
+  attemptedLogin: false,
   user: null,
   cart: null,
   stripePaymentIntentId: null,
