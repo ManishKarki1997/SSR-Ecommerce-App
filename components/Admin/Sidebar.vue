@@ -81,11 +81,10 @@ export default {
   },
   methods: {
     handleToggleTheme() {
+      const themeToSet = this.themeMode === "dark" ? "light" : "dark";
+      this.$store.commit("SET_THEME_MODE", themeToSet);
+
       toggleTheme(this.themeMode);
-      this.$store.commit(
-        "SET_THEME_MODE",
-        this.themeMode === "dark" ? "light" : "dark"
-      );
     }
   },
   watch: {
