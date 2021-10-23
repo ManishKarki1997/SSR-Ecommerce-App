@@ -76,7 +76,7 @@ export default {
     try {
       this.isLoadingProducts = true;
       const res = await this.$axios.$get("products/flashSale", {
-        take: 8
+        take: 5
       });
       this.flashSaleProducts = res.payload.products;
     } catch (error) {

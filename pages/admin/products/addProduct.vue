@@ -84,14 +84,14 @@
       </ValidationObserver>
     </div>
     <div v-show="activeTab === 'detailed-information'" class="">
-      <Editor v-model="newProduct.editorDescription" />
+      <Editor :display-mode="false" v-model="newProduct.editorDescription" />
     </div>
 
     <div v-show="activeTab === 'images'" class="">
       <div class="mb-8 ">
         <div class="flex items-center mb-2">
           <label for="imageUploadType" class="w-64 mr-4">{{
-            uploadImagesFromDevice ? "Upload from Computer" : "Upload from URL"
+            !uploadImagesFromDevice ? "Upload from Computer" : "Upload from URL"
           }}</label>
           <CheckboxToggle
             :show-labels="false"
@@ -106,15 +106,19 @@
         @changed="handleSetUploadedImages"
       />
 
-      <div class="w-full lg:w-9/12" v-if="!uploadImagesFromDevice">
+      <div class="w-fulllg:w-9/12" v-if="!uploadImagesFromDevice">
         <div class="flex items-center space-x-6">
           <FormInput input-name="Image Url" v-model="imageFromUrl" />
-          <span v-if="tempImages.length < 3" @click="addImagesFromUrl">
+          <div
+            class="mt-12"
+            v-if="tempImages.length < 3"
+            @click="addImagesFromUrl"
+          >
             <Icon name="plus" />
-          </span>
+          </div>
         </div>
 
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center mt-8 space-x-4 ">
           <div
             v-for="(image, index) in tempImages"
             :key="image + '-' + index"
@@ -238,6 +242,8 @@ export default {
         price: "",
         categoryName: "",
         subCategoryName: "",
+        categorySlug: "",
+        subCategorySlug: "",
         images: [],
         filters: []
       },
@@ -296,7 +302,12 @@ export default {
       const res = await this.$store.dispatch(
         "categories/fetchMinimalCategories"
       );
-      this.selectedCategory = res.data.payload.categories[0];
+      const firstCategory = res.data.payload.categories[0];
+      this.selectedCategory = firstCategory;
+
+      this.newProduct.categoryName = firstCategory?.categoryName;
+      this.newProduct.categorySlug = firstCategory?.slug;
+
       if (res.data.payload.categories.length > 0) {
         this.newProduct.categoryName = res.data.payload.categories[0].name;
       }
@@ -313,6 +324,10 @@ export default {
         );
 
         this.subCategories = res.data.payload.subCategories;
+        const firstSubCategory = res.data.payload.subCategories[0];
+
+        this.newProduct.subCategoryName = firstSubCategory?.subCategoryName;
+        this.newProduct.subCategorySlug = firstSubCategory?.slug;
       } catch (error) {
         if (error) {
           console.log(error);
@@ -327,11 +342,13 @@ export default {
     handleSelectCategory(category) {
       this.selectedCategory = category;
       this.newProduct.categoryName = category.name;
+      this.newProduct.categorySlug = category.slug;
       this.fetchSubCatgoriesForCategory();
     },
     handleSelectSubcategory(subCategory) {
       this.selectedSubCategory = subCategory;
       this.newProduct.subCategoryName = subCategory.name;
+      this.newProduct.subCategorySlug = subCategory.slug;
       this.fetchFiltersForSubCategory();
     },
     addImagesFromUrl() {
@@ -374,7 +391,7 @@ export default {
           return false;
         }
 
-        if (!this.newProduct.price <= 0) {
+        if (this.newProduct.price <= 0) {
           this.$store.dispatch("addNotification", {
             title: "Error",
             description: "Please set the price to be more than 0",

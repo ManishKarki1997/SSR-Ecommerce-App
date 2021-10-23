@@ -145,6 +145,7 @@ export default {
       if (!this.metaInfo.isForCategory && this.metaInfo.editMode) {
         this.newCategory = {
           ...this.newCategory,
+          parentSlug: selectedCategory.slug,
           parentName: selectedCategory.name,
           parentId: selectedCategory.id
         };

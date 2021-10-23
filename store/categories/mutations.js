@@ -6,9 +6,12 @@ const mutations = {
     const temp = state.allCategories || [];
 
     categories.forEach(c => {
-      if (temp.length === 0) temp.push(c);
+      if (temp.length === 0) {
+        temp.push(c);
+        return;
+      }
 
-      if (!temp.find(x => x.name === c.name)) {
+      if (!temp.find(x => x.uid === c.uid)) {
         temp.push(c);
       }
     });
@@ -41,6 +44,10 @@ const mutations = {
       state.allSubcategories[categoryName] !== undefined
     ) {
       // the key with this categoryname exists, so append the subCategories to the existing
+      const subCategoriesToSet = subCategories.filter(
+        s => !state.allSubcategories[categoryName].find(x => x.uid === s.uid)
+      );
+
       state.allSubcategories = {
         ...state.allSubcategories,
         [categoryName]: {
@@ -48,7 +55,7 @@ const mutations = {
           needToFetch: false,
           subCategories: [
             ...state.allSubcategories[categoryName].subCategories,
-            ...subCategories
+            ...subCategoriesToSet
           ]
         }
       };

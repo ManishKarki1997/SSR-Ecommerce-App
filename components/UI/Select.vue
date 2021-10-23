@@ -21,7 +21,7 @@
         aria-expanded="true"
         aria-labelledby="listbox-label"
       >
-        <span class="flex items-center">
+        <div class="flex items-center">
           <img
             v-if="selectedItem && selectedItem.imageUrl !== undefined"
             :src="selectedItem.imageUrl"
@@ -32,7 +32,7 @@
             {{ initial ? initial.name : selectedItem ? selectedItem.name : "" }}
             <!-- {{ selectedItem ? selectedItem.name : "" }} -->
           </span>
-        </span>
+        </div>
         <span
           class="absolute inset-y-0 right-0 flex items-center pr-2 ml-3 pointer-events-none"
         >
@@ -72,7 +72,7 @@
           role="option"
           @click="handleSelectItem(listItem)"
         >
-          <div class="flex items-center justify-center">
+          <div class="flex items-center">
             <div
               v-if="listItem.imageUrl !== undefined"
               class="flex-shrink-0 w-6 h-6 overflow-hidden rounded-full"
@@ -85,7 +85,7 @@
             </div>
 
             <span
-              :class="[listItems.imageUrl === undefined ? 'ml-0' : 'ml-3 ']"
+              :class="[listItem.imageUrl === undefined ? 'ml-0' : 'ml-3 ']"
               class="block font-normal truncate"
             >
               {{ listItem.name }}

@@ -28,7 +28,7 @@
       v-if="componentType === 'textarea'"
     >
       <textarea
-        class="block w-full h-full px-4 py-2 placeholder-gray-500 border border-gray-300 rounded text-primaryBgText sm:text-sm bg-secondary"
+        class="block w-full h-full px-4 py-2 placeholder-gray-500 border border-gray-300 rounded text-primaryTextOpposite sm:text-sm bg-secondary"
         :name="inputName"
         :id="inputName"
         :type="type"

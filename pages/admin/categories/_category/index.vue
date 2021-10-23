@@ -44,7 +44,11 @@
       </div>
 
       <div
-        v-if="subCategoriesExist && pagination.hasNext"
+        v-if="
+          subCategoriesExist &&
+            allSubcategories[categoryName].subCategories.length > 0 &&
+            pagination.hasNext
+        "
         class="flex justify-center w-full mt-32"
       >
         <BaseButton @click="handleLoadMore">Load More</BaseButton>
@@ -106,6 +110,7 @@ export default {
       activeContextMenuItem: null,
       isLoadingSubcategories: false,
       categoryName: "",
+      categorySlug: "",
       initialSubCategoryDetails: null
     };
   },
@@ -128,6 +133,7 @@ export default {
   },
   mounted() {
     this.categoryName = this.$route.params.category;
+    this.categorySlug = this.$route.query.categorySlug;
 
     if (
       !this.allSubcategories ||
@@ -169,31 +175,48 @@ export default {
 
       this.categorySidebarMetaInfo.isProcessingApi = true;
 
+      const payload = {
+        isCategory: false,
+        id: category.id,
+        uid: category.uid,
+        imageUrl: category.imageUrl,
+        description: category.description,
+        parentId: category.parentId,
+        parentName: category.parentName,
+        parentSlug: category.parentSlug,
+        isDeleted: category.isDeleted,
+        slug: category.slug,
+        updatedAt: category.updatedAt,
+        createdAt: category.createdAt,
+        name: category.name,
+        originalName: this.categorySidebarMetaInfo.categoryData.name,
+        originalParentName: this.categorySidebarMetaInfo.categoryData
+          .parentName,
+        originalParentSlug: this.categorySidebarMetaInfo.categoryData.parentSlug
+      };
+
       try {
         if (imagesData.length > 0) {
           if (imagesData[0].name !== undefined) {
-            const imageUrl = await this.handleImagesUpload(
-              category,
-              imagesData
-            );
+            const imageUrl = await this.handleImagesUpload(payload, imagesData);
 
-            category.imageUrl = imageUrl;
+            payload.imageUrl = imageUrl;
           }
         }
 
         const res = await this.$store.dispatch(
           "categories/updateCategory",
-          category
+          payload
         );
 
-        const payload = {
+        const stateUpdatePayload = {
           categoryName: this.initialSubCategoryDetails
             ? this.initialSubCategoryDetails.categoryName
             : this.categoryName,
           subCategory: res.data.payload.category
         };
 
-        this.$store.commit("categories/UPDATE_SUBCATEGORY", payload);
+        this.$store.commit("categories/UPDATE_SUBCATEGORY", stateUpdatePayload);
 
         this.$store.dispatch("addNotification", {
           title: "Success",
@@ -225,16 +248,34 @@ export default {
 
       if (this.categorySidebarMetaInfo.isProcessingApi) return;
 
+      if (!this.categoryName.trim() || !this.categorySlug.trim()) {
+        this.$store.dispatch("addNotification", {
+          title: "Error",
+          description:
+            "Category Name and Slug not present. Please don't modify data in the url",
+          type: "danger"
+        });
+        return;
+      }
+
       this.categorySidebarMetaInfo.isProcessingApi = true;
 
       const imageUrl = await this.handleImagesUpload(category, imagesData);
+      // const imageUrl =
+      //   "https://res.cloudinary.com/dnoibyqq2/image/upload/v1634973673/varyaCommerce/categories/subCategory-Parametric_Transformer_jkkgcz.jpg";
 
       try {
-        const res = await this.$store.dispatch("categories/createCategory", {
+        const payload = {
           ...category,
+          categorySlug: this.categorySlug,
           categoryName: this.categoryName,
           imageUrl
-        });
+        };
+
+        const res = await this.$store.dispatch(
+          "categories/createCategory",
+          payload
+        );
         this.$store.dispatch("addNotification", {
           title: "Success",
           description: res.data.message,
@@ -325,6 +366,8 @@ export default {
             categoryName: this.categoryName
           }
         );
+        this.pagination.skip += this.pagination.take;
+
         if (res.data.payload.subCategories.length === 0) {
           this.pagination = {
             ...this.pagination,

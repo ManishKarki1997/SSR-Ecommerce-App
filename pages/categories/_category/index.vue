@@ -58,7 +58,7 @@
       </div>
 
       <!-- sub categories card -->
-      <div class="mt-12 mb-24 md:mt-16 ">
+      <div class="mt-12 mb-24 ">
         <div
           class="grid w-full grid-cols-1 mx-auto lg:w-7/12 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 place-items-center place-content-center"
         >
@@ -130,7 +130,7 @@
             <!-- products list -->
             <div
               v-if="detailedCategories[categoryName].products !== undefined"
-              class="grid w-full grid-cols-1 mt-16 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-36"
+              class="pb-16 products-grid"
             >
               <ProductCard
                 v-for="(product, idx) in detailedCategories[categoryName]

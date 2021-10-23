@@ -116,6 +116,11 @@ export default {
     },
     async handleUpdateCategory(category, imagesData) {
       this.isHandlingCategory = true;
+      category.isCategory = true;
+      if (category.name !== this.categorySidebarMetaInfo.categoryData.name) {
+        category.originalName = this.categorySidebarMetaInfo.categoryData.name;
+        category.originalSlug = this.categorySidebarMetaInfo.categoryData.slug;
+      }
 
       if (this.categorySidebarMetaInfo.isProcessingApi) return;
 
@@ -257,7 +262,10 @@ export default {
       Object.keys(this.newCategory).forEach(x => (this.newCategory[x] = ""));
     },
     selectCategory(category) {
-      this.$router.push(`categories/${category.slug}`);
+      // this.$router.push(`categories/${category.slug}`);
+      this.$router.push(
+        `categories/${category.name}?categorySlug=${category.slug}`
+      );
     },
     onTriggerContextMenu(menuItem) {
       this.activeContextMenuItem = menuItem;
