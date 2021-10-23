@@ -9,7 +9,6 @@
         ref="categoryObserver"
         tag="form"
         @submit.prevent="handleCategoryAction"
-        class=""
       >
         <FormInput
           v-model="newCategory.name"
@@ -25,6 +24,7 @@
           label="Category"
           :is-loading-list="isFetchingMinimalCategories"
           :list-items="minimalCategories || []"
+          :initial-value="initialSubCategory"
           @selected="onCategorySelected"
         />
 
@@ -39,7 +39,11 @@
           <UploadImages
             :max="1"
             uploadMsg="Category Image"
-            :initialFiles="metaInfo.editMode ? imagesData : null"
+            :initialFiles="
+              metaInfo.editMode
+                ? [...imagesData.map(x => ({ imageUrl: x }))]
+                : null
+            "
             @changed="handleImages"
           />
         </div>
@@ -58,7 +62,8 @@
 
 <script>
 import { mapState } from "vuex";
-import UploadImages from "vue-upload-drop-images";
+// import UploadImages from "vue-upload-drop-images";
+import UploadImages from "@/components/Common/UploadImages.vue";
 import { ValidationObserver } from "vee-validate";
 import ModalSidebar from "@/components/Common/ModalSidebar";
 import BaseButton from "@/components/UI/Button";
@@ -102,6 +107,12 @@ export default {
         if (this.metaInfo.editMode) return `Edit Subcategory`;
         else return `Add Subcategory`;
       }
+    },
+    initialSubCategory() {
+      if (this.metaInfo.isForCategory) return null;
+      return this.minimalCategories.find(
+        m => m.slug === this.metaInfo.categoryData.parentSlug
+      );
     }
   },
   data() {

@@ -4,9 +4,7 @@ const actions = {
   },
   async fetchCategories({ commit, dispatch }, payload) {
     try {
-      const res = await this.$categoryRepository.fetchCategories(payload);
-      commit("SET_ALL_CATEGORIES", res.data.payload.categories);
-      return res;
+      return await this.$categoryRepository.fetchCategories(payload);
     } catch (error) {
       if (error.response) {
         dispatch(
@@ -44,16 +42,9 @@ const actions = {
   },
   async fetchSubcategoriesForACategory({ commit, dispatch }, payload) {
     try {
-      const res = await this.$categoryRepository.fetchSubcategoriesForACategory(
+      return await this.$categoryRepository.fetchSubcategoriesForACategory(
         payload
       );
-
-      const { categoryName } = payload;
-      commit("SET_SUBCATEGORIES", {
-        categoryName,
-        subCategories: res.data.payload.subCategories
-      });
-      return res;
     } catch (error) {
       if (error.response) {
         dispatch(

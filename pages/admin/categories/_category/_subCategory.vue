@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       pagination: {
-        take: 4,
+        take: 10,
         skip: 0,
         hasNext: true
       },

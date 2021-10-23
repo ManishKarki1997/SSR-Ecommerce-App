@@ -9,9 +9,7 @@
     <div class="w-full h-full ">
       <div
         v-if="
-          !isLoadingSubcategories &&
-            subCategoriesExist &&
-            allSubcategories[categoryName].subCategories.length === 0
+          !isLoadingSubcategories && subCategories && subCategories.length === 0
         "
         class="flex items-center justify-center w-full mt-48 "
       >
@@ -23,10 +21,10 @@
 
       <div
         class="grid grid-cols-2 gap-x-12 gap-y-24 categories-list lg:grid-cols-4 md:grid-cols-3"
-        v-if="!isLoadingSubcategories && subCategoriesExist"
+        v-if="!isLoadingSubcategories && subCategories"
       >
         <CategoryCard
-          v-for="subCategory in allSubcategories[categoryName].subCategories"
+          v-for="subCategory in subCategories"
           :key="'subCategory-' + subCategory.name"
           :category="subCategory"
           @openContextMenu="onTriggerContextMenu"
@@ -44,11 +42,7 @@
       </div>
 
       <div
-        v-if="
-          subCategoriesExist &&
-            allSubcategories[categoryName].subCategories.length > 0 &&
-            pagination.hasNext
-        "
+        v-if="subCategories && pagination.hasNext"
         class="flex justify-center w-full mt-32"
       >
         <BaseButton @click="handleLoadMore">Load More</BaseButton>
@@ -109,53 +103,18 @@ export default {
       isCategoryModalVisible: false,
       activeContextMenuItem: null,
       isLoadingSubcategories: false,
+      subCategories: null,
       categoryName: "",
       categorySlug: "",
       initialSubCategoryDetails: null
     };
   },
-  computed: {
-    ...mapState("categories", ["allSubcategories"]),
-    subCategories() {
-      if (!this.allSubcategories || !this.categoryName) return null;
-
-      return this.allSubcategories.filter(
-        x => x.parentName === this.categoryName
-      );
-    },
-    subCategoriesExist() {
-      return (
-        this.allSubcategories &&
-        this.allSubcategories[this.categoryName] !== undefined &&
-        this.allSubcategories[this.categoryName].subCategories !== undefined
-      );
-    }
-  },
+  computed: {},
   mounted() {
     this.categoryName = this.$route.params.category;
     this.categorySlug = this.$route.query.categorySlug;
 
-    if (
-      !this.allSubcategories ||
-      (this.allSubcategories &&
-        this.allSubcategories[this.categoryName] === undefined)
-    ) {
-      this.fetchSubcategoriesForACategory();
-    } else if (
-      this.allSubcategories &&
-      this.allSubcategories[this.categoryName] !== undefined &&
-      this.allSubcategories[this.categoryName].needToFetch
-    ) {
-      this.$store.commit("categories/REMOVE_SUBCATEGORY", {
-        categoryName: this.categoryName,
-        subCategory: this.allSubcategories[this.categoryName].subCategories[0]
-      });
-      this.fetchSubcategoriesForACategory();
-    } else {
-      this.initialSubCategoryDetails = {
-        ...this.allSubcategories[this.categoryName]
-      };
-    }
+    this.fetchSubcategoriesForACategory();
   },
   methods: {
     onClickCreateCategory() {
@@ -209,14 +168,18 @@ export default {
           payload
         );
 
-        const stateUpdatePayload = {
-          categoryName: this.initialSubCategoryDetails
-            ? this.initialSubCategoryDetails.categoryName
-            : this.categoryName,
-          subCategory: res.data.payload.category
-        };
-
-        this.$store.commit("categories/UPDATE_SUBCATEGORY", stateUpdatePayload);
+        // just remove the subCategory from the list if it has been changed to another category
+        if (payload.originalParentName !== payload.parentName) {
+          this.subCategories = this.subCategories.filter(
+            s => s.uid !== res.data.payload.category.uid
+          );
+        } else {
+          this.subCategories = this.subCategories.map(s =>
+            s.uid === res.data.payload.category.uid
+              ? res.data.payload.category
+              : s
+          );
+        }
 
         this.$store.dispatch("addNotification", {
           title: "Success",
@@ -224,7 +187,7 @@ export default {
           type: "success"
         });
       } catch (error) {
-        if (error || error.response) {
+        if (error.response) {
           this.$store.dispatch("addNotification", {
             title: "Error",
             description: "Something went wrong",
@@ -281,10 +244,7 @@ export default {
           description: res.data.message,
           type: "success"
         });
-        this.$store.commit(
-          "categories/ADD_NEW_SUBCATEGORY",
-          res.data.payload.category
-        );
+        this.subCategories.push(res.data.payload.category);
       } catch (error) {
         if (error.response) {
           this.$store.dispatch("addNotification", {
@@ -366,7 +326,17 @@ export default {
             categoryName: this.categoryName
           }
         );
-        this.pagination.skip += this.pagination.take;
+
+        if (!this.subCategories) {
+          this.subCategories = res.data.payload.subCategories;
+        } else {
+          // just to be absolutely sure there is no duplicate
+          res.data.payload.subCategories.forEach(s => {
+            if (!this.subCategories.find(x => x.uid === s.uid)) {
+              this.subCategories.push(s);
+            }
+          });
+        }
 
         if (res.data.payload.subCategories.length === 0) {
           this.pagination = {

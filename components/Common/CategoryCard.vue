@@ -71,10 +71,15 @@ export default {
           menuName: "quick-edit"
         },
         {
-          name: "Edit",
-          iconName: "edit",
-          menuName: "edit"
+          name: "Delete",
+          iconName: "trash",
+          menuName: "delete"
         }
+        // {
+        //   name: "Edit",
+        //   iconName: "edit",
+        //   menuName: "edit"
+        // }
       ]
     };
   },

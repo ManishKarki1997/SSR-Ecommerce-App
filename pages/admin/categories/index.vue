@@ -9,10 +9,10 @@
     <div class="pb-16 ">
       <div
         class="grid grid-cols-2 gap-x-12 gap-y-24 categories-list lg:grid-cols-4 md:grid-cols-3"
-        v-if="allCategories"
+        v-if="categories"
       >
         <CategoryCard
-          v-for="category in allCategories"
+          v-for="category in categories"
           :key="'category-' + category.name"
           :category="category"
           @openContextMenu="onTriggerContextMenu"
@@ -30,7 +30,7 @@
       </div>
 
       <div
-        v-if="allCategories && pagination.hasNext"
+        v-if="categories && pagination.hasNext"
         class="flex justify-center w-full mt-32"
       >
         <BaseButton @click="handleLoadMore">Load More</BaseButton>
@@ -87,6 +87,7 @@ export default {
         categoryData: null,
         isProcessingApi: false
       },
+      categories: null,
       activeContextMenuItem: null,
       isLoadingCategories: false,
       isHandlingCategory: false,
@@ -98,11 +99,9 @@ export default {
       }
     };
   },
-  computed: {
-    ...mapState("categories", ["allCategories"])
-  },
+  computed: {},
   mounted() {
-    if (!this.allCategories) {
+    if (!this.categories) {
       this.fetchCategories();
     }
   },
@@ -141,10 +140,10 @@ export default {
           "categories/updateCategory",
           category
         );
-
-        this.$store.commit(
-          "categories/UPDATE_CATEGORY",
-          res.data.payload.category
+        this.categories = this.categories.map(c =>
+          c.uid === res.data.payload.category.uid
+            ? res.data.payload.category
+            : c
         );
 
         this.$store.dispatch("addNotification", {
@@ -191,10 +190,7 @@ export default {
           description: res.data.message,
           type: "success"
         });
-        this.$store.commit(
-          "categories/ADD_NEW_CATEGORY",
-          res.data.payload.category
-        );
+        this.categories.push(res.data.payload.category);
       } catch (error) {
         if (error.response) {
           const errors = transformAPIErrors(error);
@@ -277,6 +273,8 @@ export default {
         skip: this.pagination.skip,
         includeSubCategories: false
       });
+
+      this.categories = res.data.payload.categories;
 
       if (res.data.payload.categories.length === 0) {
         this.pagination = {
