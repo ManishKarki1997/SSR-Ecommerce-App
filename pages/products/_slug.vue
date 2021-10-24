@@ -155,6 +155,23 @@
           <div class="grid grid-cols-2 gap-2 lg:gap-6 md:grid-cols-4">
             <button
               @click="activeProductTab = productTab.key"
+              :class="[
+                activeProductTab === productTab.key
+                  ? 'border-blue-600 text-blue-600'
+                  : 'text-primary'
+              ]"
+              class="relative w-full px-8 py-2 transition-all duration-200 border border-gray-400 rounded hover:border-blue-600 hover:text-blue-600"
+              v-for="productTab in productTabs"
+              :key="productTab.key"
+            >
+              {{ productTab.name }}
+
+              <span v-if="product._count[productTab.dbName] !== undefined"
+                >({{ product._count[productTab.dbName] }})</span
+              >
+            </button>
+            <!-- <button
+              @click="activeProductTab = productTab.key"
               :class="{
                 'bg-btnPrimary text-white': activeProductTab === productTab.key
               }"
@@ -167,7 +184,7 @@
               <span v-if="product._count[productTab.dbName] !== undefined"
                 >({{ product._count[productTab.dbName] }})</span
               >
-            </button>
+            </button> -->
           </div>
         </div>
 
