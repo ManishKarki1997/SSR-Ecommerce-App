@@ -2,7 +2,7 @@ import { mapState } from "vuex";
 
 export const wishlistMixin = {
   computed: {
-    ...mapState("auth", ["wishlist"])
+    ...mapState("auth", ["wishlist", "user"])
   },
   data() {
     return {
@@ -21,10 +21,19 @@ export const wishlistMixin = {
     async handleAddRemoveProductToWishlist(product) {
       if (this.isAddingItemToWishlist) return;
 
+      if (!this.user) {
+        this.$store.dispatch("addNotification", {
+          title: "Error",
+          description: "Please log in to your account first",
+          type: "danger"
+        });
+        return;
+      }
+
       this.isAddingItemToWishlist = true;
       if (this.checkIfProductPresentInWishlist(product)) {
         await this.$store.dispatch("auth/removeProductFromWishlist", {
-          productUid: this.product.uid,
+          productUid: product.uid,
           wishlistId: this.checkIfProductPresentInWishlist(product).id
         });
       } else {
@@ -33,10 +42,7 @@ export const wishlistMixin = {
         });
       }
 
-      // to prevent spam clicking
-      setTimeout(() => {
-        this.isAddingItemToWishlist = false;
-      }, 1500);
+      this.isAddingItemToWishlist = false;
     }
   }
 };

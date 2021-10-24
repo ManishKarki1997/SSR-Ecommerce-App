@@ -1,4 +1,4 @@
-import { format, formatDuration, intervalToDuration } from "date-fns";
+import { format, formatDuration, isAfter, intervalToDuration } from "date-fns";
 
 const formatDate = (date, formatString) => {
   return format(new Date(date), formatString || "do MMMM , yyyy");
@@ -24,4 +24,8 @@ const calculateCountdown = (start = new Date(), end) => {
   return formatted;
 };
 
-export { formatDate, calculateCountdown };
+const checkIfDateAfter = (date, dateToCompare) => {
+  return isAfter(new Date(date), new Date(dateToCompare));
+};
+
+export { formatDate, calculateCountdown, checkIfDateAfter };

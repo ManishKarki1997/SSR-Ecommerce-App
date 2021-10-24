@@ -30,7 +30,8 @@ module.exports = {
       display: ["group-hover"],
       scale: ["group-hover", "hover"],
       visibility: ["hover", "group-hover"],
-      textColor: ["hover"]
+      textColor: ["hover"],
+      borderColor: ["hover", "focus"]
     }
   },
   plugins: []

@@ -1,7 +1,8 @@
 <template>
   <div class="w-full min-h-screen bg-primary">
     <div class="pb-96">
-      <FlashSale class="mt-56 " />
+      <FlashSalesVariant1 class="mt-56" />
+      <!-- <FlashSale class="mt-56 " /> -->
       <AppServices class="mt-56" />
       <HomeProducts class="mt-32" />
       <HomeCategories class="mt-56" />
@@ -12,9 +13,6 @@
         :products="products"
         class="mt-36"
       />
-
-      <!-- <HomeCategoryBlock class="mt-48" categorySlug="consoles" />
-      <HomeCategoryBlock class="mt-48" categorySlug="accessories" /> -->
     </div>
   </div>
 </template>
@@ -26,6 +24,7 @@ import HomeCategories from "@/components/Home/Categories.vue";
 import HomeProducts from "@/components/Home/LatestProducts.vue";
 import HomeCategoryBlock from "@/components/Home/HomeCategoryBlock.vue";
 import FlashSale from "@/components/Home/FlashSale.vue";
+import FlashSalesVariant1 from "@/components/Home/FlashSalesVariant1.vue";
 import AppServices from "~/components/Home/AppServices.vue";
 
 export default {
@@ -34,6 +33,7 @@ export default {
     HomeCategories,
     HomeCategoryBlock,
     FlashSale,
+    FlashSalesVariant1,
     AppServices
   },
   head() {

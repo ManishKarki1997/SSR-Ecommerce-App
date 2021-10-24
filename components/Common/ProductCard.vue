@@ -172,7 +172,7 @@ export default {
   mixins: [wishlistMixin, cartMixin],
 
   computed: {
-    ...mapState("auth", ["wishlist", "user"]),
+    ...mapState("auth", ["wishlist", "user", "cart"]),
 
     appConstants() {
       return constants;

@@ -3,7 +3,7 @@ import calculateProductPriceAndDiscount from "@/utils/calculateProductPriceAndDi
 
 export const cartMixin = {
   computed: {
-    ...mapState("auth", ["cart"])
+    ...mapState("auth", ["user", "cart"])
   },
   data() {
     return {
@@ -26,6 +26,15 @@ export const cartMixin = {
     async handleAddRemoveProductToCart(product) {
       if (this.isAddingItemToCart) return;
 
+      if (!this.user) {
+        this.$store.dispatch("addNotification", {
+          title: "Error",
+          description: "Please log in to your account first",
+          type: "danger"
+        });
+        return;
+      }
+
       this.isAddingItemToCart = true;
       if (this.isProductPresentInCart(product)) {
         const cartItemId = this.cart.find(c => c.product.uid === product.uid)
@@ -38,19 +47,13 @@ export const cartMixin = {
       } else {
         const payload = {
           count: this.productQtyCount || 1,
-          totalPrice:
-            (this.productQtyCount || 1) *
-            this.productPricing(product).discountedPrice,
           product
         };
 
         await this.$store.dispatch("auth/addProductToCart", payload);
       }
 
-      // prevent spam clicking
-      setTimeout(() => {
-        this.isAddingItemToCart = false;
-      }, 1000);
+      this.isAddingItemToCart = false;
     }
   }
 };
