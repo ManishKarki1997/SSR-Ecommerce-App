@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <p>
-      {{ formattedDateTime }}
-    </p>
-  </div>
+  <client-only>
+    <div>
+      <p>
+        {{ formattedDateTime }}
+      </p>
+    </div>
+  </client-only>
 </template>
 
 <script>

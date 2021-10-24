@@ -5,7 +5,7 @@
     <main
       style="min-height:80vh"
       :class="[showNavbar ? 'mt-32' : 'mt-8']"
-      class="px-6 md:px-6 lg:px-24 bg-primary"
+      class="px-6 md:px-6 lg:px-32 bg-primary"
     >
       <Nuxt keep-alive />
     </main>

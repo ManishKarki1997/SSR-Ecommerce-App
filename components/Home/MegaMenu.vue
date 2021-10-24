@@ -19,9 +19,12 @@
             class="flex items-center space-x-4 transition-transform duration-300 transform group-hover:text-accent group-hover:translate-x-4"
           >
             <span>
-              <Icon name="refresh" class=" group-hover:text-accent" />
+              <Icon
+                name="refresh"
+                class=" text-secondary group-hover:text-accent"
+              />
             </span>
-            <span class="text-sm font-semibold ">{{ menuItem.name }}</span>
+            <span class="text-sm font-normal ">{{ menuItem.name }}</span>
           </div>
           <span>
             <Icon name="arrow-right" class="w-6 h-6" />
@@ -29,7 +32,7 @@
         </nuxt-link>
 
         <ul
-          class="absolute z-20 invisible w-56 px-4 py-4 group-hover:visible -top-4 left-64"
+          class="absolute z-20 invisible w-56 px-4 py-4 -ml-2 rounded -top-6 group-hover:visible bg-primary left-56"
         >
           <li
             v-for="subCategory in menuItem.subCategories"

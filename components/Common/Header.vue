@@ -128,10 +128,14 @@
             <button
               aria-label="Theme Button"
               @click="handleToggleTheme"
-              class=" text-primary"
+              class=""
             >
-              <Icon v-if="themeMode === 'dark'" name="sun" />
-              <Icon v-if="themeMode === 'light'" name="moon" />
+              <Icon class="text-white" v-if="themeMode === 'dark'" name="sun" />
+              <Icon
+                class="text-white"
+                v-if="themeMode === 'light'"
+                name="moon"
+              />
             </button>
           </li>
 
@@ -141,7 +145,7 @@
               @click="isMobileMenuActive = true"
               class="ml-auto"
             >
-              <Icon name="menu" />
+              <Icon class="text-white " name="menu" />
             </button>
           </li>
         </ul>
@@ -150,7 +154,7 @@
         <transition name="fade" mode="out-in">
           <div
             v-if="isMobileMenuActive && headerCategories"
-            class="fixed top-0 left-0 z-50 w-full h-full px-6 py-6 bg-secondary"
+            class="fixed top-0 left-0 z-50 w-full h-full px-6 py-6 bg-primary"
           >
             <div class="flex items-center justify-between mb-16">
               <nuxt-link to="/" class="text-primary">
@@ -192,7 +196,7 @@
                         class="w-4 h-4 transition-all duration-300 transform"
                       />
                     </span>
-                    <span class="text-base font-normal ">{{
+                    <span class="text-base font-normal text-primary ">{{
                       category.name
                     }}</span>
                   </button>
@@ -224,7 +228,9 @@
                         <div
                           class="w-2 h-2 border-2 border-blue-500 rounded-sm"
                         ></div>
-                        <span class="text-sm">{{ subCategory.name }}</span>
+                        <span class="text-sm text-primary">{{
+                          subCategory.name
+                        }}</span>
                       </button>
                     </li>
                   </ul>
@@ -292,7 +298,7 @@
       </client-only>
     </div>
 
-    <SecondaryHeader />
+    <!-- <SecondaryHeader /> -->
   </header>
 </template>
 

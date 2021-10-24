@@ -9,9 +9,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "^4.2.2",
+    "@egjs/vue-flicking": "^4.3.0",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/cloudinary": "^1.0.3",
     "@nuxtjs/pwa": "^3.3.5",
+    "@splidejs/vue-splide": "^0.3.5",
     "@stripe/stripe-js": "^1.19.1",
     "@tiptap/extension-image": "*",
     "@tiptap/extension-table": "*",
