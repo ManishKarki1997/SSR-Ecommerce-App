@@ -34,14 +34,20 @@
           class="items-center justify-end hidden space-x-8 md:flex action-items md:w-6/12 lg:w-3/12"
         >
           <li v-if="!user">
-            <BaseButton @click="$router.push('/login')" text>
+            <button
+              @click="$router.push('/login')"
+              class="px-4 py-1 text-white hover:text-gray-100"
+            >
               Login
-            </BaseButton>
+            </button>
           </li>
           <li v-if="!user">
-            <BaseButton @click="$router.push('/signup')" type="primary">
+            <button
+              @click="$router.push('/signup')"
+              class="px-4 py-1 text-black bg-white border border-white rounded hover:bg-transparent hover:text-white"
+            >
               Signup
-            </BaseButton>
+            </button>
           </li>
 
           <li>
@@ -246,6 +252,7 @@
                     class=""
                     input-name="Search Products"
                     :show-label="false"
+                    :disableColorsStying="true"
                     placeholder="Search for a product"
                     type="text"
                     icon-left="search"
@@ -260,8 +267,18 @@
                   v-if="!user"
                   class="relative flex items-center mt-auto space-x-4"
                 >
-                  <BaseButton text>Login</BaseButton>
-                  <BaseButton text type="primary" outlined>Register</BaseButton>
+                  <button
+                    @click="$router.push('/login')"
+                    class="px-4 py-1 text-accent"
+                  >
+                    Login
+                  </button>
+                  <button
+                    @click="$router.push('/signup')"
+                    class="px-4 py-1 text-white rounded bg-accent"
+                  >
+                    Signup
+                  </button>
                 </div>
 
                 <div v-if="user" class="flex space-x-4 ">
