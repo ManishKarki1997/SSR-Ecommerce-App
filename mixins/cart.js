@@ -24,6 +24,8 @@ export const cartMixin = {
     },
 
     async handleAddRemoveProductToCart(product) {
+      if (this.isAddingItemToCart) return;
+
       this.isAddingItemToCart = true;
       if (this.isProductPresentInCart(product)) {
         const cartItemId = this.cart.find(c => c.product.uid === product.uid)

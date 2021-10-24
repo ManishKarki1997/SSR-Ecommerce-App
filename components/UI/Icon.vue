@@ -9,6 +9,10 @@
 
 <script>
 const icons = {
+  "secure-payment-line": require("../../assets/icons/secure-payment-line.svg?inline"),
+  support: require("../../assets/icons/support.svg?inline"),
+  money: require("../../assets/icons/money.svg?inline"),
+  truck: require("../../assets/icons/truck.svg?inline"),
   coupon: require("../../assets/icons/coupon.svg?inline"),
   filter: require("../../assets/icons/filter.svg?inline"),
   pen: require("../../assets/icons/pen.svg?inline"),

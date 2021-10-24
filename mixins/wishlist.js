@@ -19,6 +19,8 @@ export const wishlistMixin = {
     },
 
     async handleAddRemoveProductToWishlist(product) {
+      if (this.isAddingItemToWishlist) return;
+
       this.isAddingItemToWishlist = true;
       if (this.checkIfProductPresentInWishlist(product)) {
         await this.$store.dispatch("auth/removeProductFromWishlist", {
