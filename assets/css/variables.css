@@ -3,10 +3,10 @@
 }
 
 .light {
-  --primary-background: rgb(236, 234, 234);
-  --secondary-background: rgb(255, 255, 255);
+  --primary-background: rgb(255, 255, 255);
+  --secondary-background: rgb(230, 225, 225);
   --tertiary-background: rgb(223, 217, 217);
-  --accent-background: #5c5bf1;
+  --accent-background: #2158e1;
 
   /* --primary-text: rgb(0, 0, 0); */
   --primary-text: #141414;
@@ -44,7 +44,7 @@
   --primary-background: #0c0f16;
   --secondary-background: #0a0a0a;
   --tertiary-background: #12141b;
-  --accent-background: #5c5bf1;
+  --accent-background: #2158e1;
 
   --primary-text: white;
   --secondary-text: rgba(218, 216, 216, 0.973);

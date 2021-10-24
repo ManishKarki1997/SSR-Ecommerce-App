@@ -9,20 +9,18 @@
         :key="'menu-item-' + menuItem.name"
         class="px-2 py-2 rounded-lg hoverable"
       >
-        <nuxt-link
-          class=" hover:text-accent"
-          :to="`/categories/${menuItem.slug}`"
-          >{{ menuItem.name }}</nuxt-link
-        >
+        <nuxt-link :to="`/categories/${menuItem.slug}`">{{
+          menuItem.name
+        }}</nuxt-link>
         <div class="w-full py-4 mega-menu ">
           <div
-            class="px-6 py-2 shadow-2xl rounded-xl bg-secondary menu-content-wrapper"
+            class="px-6 py-2 bg-white shadow-2xl rounded-xl menu-content-wrapper"
           >
             <nuxt-link
               :to="'/categories/' + menuItem.slug + '/' + subCategory.slug"
               v-for="subCategory in menuItem.subCategories"
               :key="'sub-category-' + subCategory.name"
-              class="block my-4 transition-all duration-300 transform cursor-pointer hover:translate-x-2 text-secondary hover:text-acccent"
+              class="block my-4 text-black transition-all duration-300 transform cursor-pointer hover:translate-x-2 hover:text-acccent"
             >
               {{ subCategory.name }}
             </nuxt-link>

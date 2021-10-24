@@ -29,6 +29,11 @@
     >
       <!-- main product -->
       <div
+        data-aos="fade-up"
+        data-aos-offset="100"
+        :data-aos-delay="0"
+        data-aos-duration="400"
+        data-aos-easing="ease-in-out"
         class="flex w-full px-4 py-4 space-x-6 transition-colors duration-300 border border-transparent rounded-lg hover:border hover:border-blue-700 main-product md:w-8/12"
       >
         <div
@@ -135,7 +140,12 @@
         class="flex flex-col w-full px-4 py-4 space-y-8 transition-colors duration-300 border border-transparent rounded hover:border hover:border-blue-700 md:w-4/12"
       >
         <div
-          v-for="sale in flashSaleProducts.slice(1, 4)"
+          data-aos="fade-up"
+          data-aos-offset="100"
+          :data-aos-delay="idx * 50"
+          data-aos-duration="400"
+          data-aos-easing="ease-in-out"
+          v-for="(sale, idx) in flashSaleProducts.slice(1, 4)"
           :key="'mini-sale' + sale.product.uid"
           class="flex space-x-2"
         >

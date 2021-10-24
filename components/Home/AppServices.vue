@@ -1,5 +1,7 @@
 <template>
-  <div class="grid w-full grid-cols-2 py-8 md:grid-cols-4 gap-x-8 gap-y-8">
+  <div
+    class="grid w-full grid-cols-2 px-8 py-12 rounded shadow-lg md:grid-cols-4 gap-x-8 gap-y-8 bg-secondary"
+  >
     <div
       class="flex space-x-2"
       v-for="service in services"

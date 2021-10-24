@@ -26,11 +26,13 @@ module.exports = {
   },
   variants: {
     extend: {
+      translate: ["group-hover"],
+      transform: ["group-hover"],
       opacity: ["group-hover"],
       display: ["group-hover"],
       scale: ["group-hover", "hover"],
       visibility: ["hover", "group-hover"],
-      textColor: ["hover"],
+      textColor: ["group-hover", "hover"],
       borderColor: ["hover", "focus"]
     }
   },

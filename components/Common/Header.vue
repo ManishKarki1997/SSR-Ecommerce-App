@@ -1,17 +1,23 @@
 <template>
-  <header class="fixed top-0 left-0 z-20 w-full px-6 py-5 lg:px-12 bg-primary">
+  <header
+    class="fixed top-0 left-0 z-20 w-full px-6 py-5 text-white bg-blue-700 bg-gradient-to-tr from-blue-600 to-blue-700 lg:px-12"
+  >
     <div class="flex items-center justify-between md:justify-start">
       <div class="w-3/12 brand md:w-2/12">
-        <nuxt-link to="/" class="text-primary">
+        <nuxt-link to="/" class="text-white">
           <span class="text-4xl font-bold ">V</span>
           <span class="-ml-2 ">arya</span>
         </nuxt-link>
       </div>
 
       <div class="hidden md:flex md:w-6/12 lg:w-7/12">
-        <form class="w-full " @submit.prevent="handleSearchProducts">
+        <form
+          class="w-full search-bar-form"
+          @submit.prevent="handleSearchProducts"
+        >
           <FormInput
             class="mt-5"
+            :disableColorsStying="true"
             input-name="Search Products"
             :show-label="false"
             placeholder="Search for a product"
@@ -44,8 +50,16 @@
               @click="handleToggleTheme"
               class="mt-2 text-primary"
             >
-              <Icon v-if="themeMode === 'dark'" name="sun" />
-              <Icon v-if="themeMode === 'light'" name="moon" />
+              <Icon
+                class="text-white "
+                v-if="themeMode === 'dark'"
+                name="sun"
+              />
+              <Icon
+                class="text-white"
+                v-if="themeMode === 'light'"
+                name="moon"
+              />
             </button>
           </li>
 
@@ -56,13 +70,13 @@
               class="relative mt-2"
             >
               <span @click="setCartSidebar">
-                <Icon class="cursor-pointer " name="basket" />
+                <Icon class="text-white cursor-pointer" name="basket" />
               </span>
 
               <div
-                class="absolute flex items-center w-5 h-5 bg-blue-700 rounded-full -top-3 -right-2 justify-items-center"
+                class="absolute flex items-center w-5 h-5 bg-white rounded-full -top-3 -right-2 justify-items-center"
               >
-                <span class="w-full text-xs text-white ">
+                <span class="w-full text-xs text-black ">
                   {{ cart ? cart.length : 0 }}
                 </span>
               </div>
@@ -218,7 +232,10 @@
               </div>
 
               <div class="mt-auto mb-6">
-                <form class="w-full " @submit.prevent="handleSearchProducts">
+                <form
+                  class="w-full search-bar-form"
+                  @submit.prevent="handleSearchProducts"
+                >
                   <FormInput
                     class=""
                     input-name="Search Products"
@@ -412,6 +429,12 @@ export default {
 <style lang="scss">
 header {
   z-index: 999 !important;
+
+  .search-bar-form {
+    .form-input input {
+      background-color: white !important;
+    }
+  }
 
   .mega-menu {
     opacity: 0;

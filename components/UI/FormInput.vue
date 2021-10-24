@@ -28,7 +28,12 @@
       v-if="componentType === 'textarea'"
     >
       <textarea
-        class="block w-full h-full px-4 py-2 placeholder-gray-500 border border-gray-300 rounded text-primaryTextOpposite sm:text-sm bg-secondary"
+        :class="[
+          disableColorsStying
+            ? 'bg-white text-base'
+            : 'text-primaryTextOpposite bg-secondary'
+        ]"
+        class="block w-full h-full px-4 py-2 placeholder-gray-500 border border-gray-300 rounded sm:text-sm "
         :name="inputName"
         :id="inputName"
         :type="type"
@@ -39,11 +44,20 @@
 
     <div
       v-if="componentType === 'input'"
-      class="flex items-center h-10 px-4 border border-gray-300 rounded bg-secondary text-primaryTextOpposite focus:border-indigo-500"
-      :class="[showLabel ? 'mt-1' : '-mt-4']"
+      class="flex items-center h-10 px-4 border border-gray-300 rounded focus:border-indigo-500"
+      :class="[
+        showLabel ? 'mt-1' : '-mt-4',
+        disableColorsStying
+          ? 'bg-white text-base'
+          : 'text-primaryTextOpposite bg-secondary'
+      ]"
     >
       <span class="mr-2 icon-wrapper" v-if="iconLeft">
-        <Icon :name="iconLeft" v-if="iconLeft" />
+        <Icon
+          :class="[disableColorsStying ? 'text-black' : 'text-primary']"
+          :name="iconLeft"
+          v-if="iconLeft"
+        />
       </span>
 
       <input
@@ -91,6 +105,10 @@ import { ValidationProvider } from "vee-validate";
 
 export default {
   props: {
+    disableColorsStying: {
+      type: Boolean,
+      default: false
+    },
     maxLength: {
       type: Number,
       default: 0

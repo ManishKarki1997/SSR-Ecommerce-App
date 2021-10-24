@@ -1,6 +1,7 @@
 <template>
   <div class="w-full min-h-screen bg-primary">
     <div class="pb-96">
+      <MegaMenu class="mt-48" />
       <FlashSalesVariant1 class="mt-56" />
       <!-- <FlashSale class="mt-56 " /> -->
       <AppServices class="mt-56" />
@@ -20,6 +21,7 @@
 <script>
 import { generateUrl } from "@/utils";
 
+import MegaMenu from "@/components/UI/MegaMenu.vue";
 import HomeCategories from "@/components/Home/Categories.vue";
 import HomeProducts from "@/components/Home/LatestProducts.vue";
 import HomeCategoryBlock from "@/components/Home/HomeCategoryBlock.vue";
@@ -29,6 +31,7 @@ import AppServices from "~/components/Home/AppServices.vue";
 
 export default {
   components: {
+    MegaMenu,
     HomeProducts,
     HomeCategories,
     HomeCategoryBlock,

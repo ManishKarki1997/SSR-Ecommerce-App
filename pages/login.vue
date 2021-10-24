@@ -1,10 +1,10 @@
 <template>
   <div
     style="min-height:40vh"
-    class="flex justify-center px-0 -mt-8 bg-transparent md:mt-0 md:items-center lg:px-8"
+    class="flex justify-center px-0 bg-transparent md:mt-0 md:items-center lg:px-8"
   >
-    <div class="w-full max-w-lg py-8 space-y-8 rounded-lg bg-secondary">
-      <div>
+    <div class="w-full max-w-lg px-8 py-8 space-y-8 rounded-lg bg-secondary">
+      <div class="mt-4">
         <div class="flex justify-center w-full text-indigo-600">
           <Icon
             name="bolt"
