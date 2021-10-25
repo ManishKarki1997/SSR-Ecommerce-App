@@ -193,30 +193,34 @@
           v-if="!isLoadingProduct && product"
           class="py-8 tab-content-wrapper"
         >
-          <transition name="fade" mode="out-in">
+          <transition-group name="fade" mode="out-in">
             <ProductDescriptionTab
+              key="product-description-tab-contents"
               :displayMode="true"
               :product="product"
-              v-if="activeProductTab === 'description'"
+              v-show="activeProductTab === 'description'"
             />
             <ProductSpecificationTab
+              key="product-specification-tab-contents"
               :product="product"
-              v-if="activeProductTab === 'specifications'"
+              v-show="activeProductTab === 'specifications'"
             />
             <ProductReviewsTab
+              key="product-reviews-tab-contents"
               :product="product"
-              v-if="activeProductTab === 'reviews'"
+              v-show="activeProductTab === 'reviews'"
             />
             <ProductQuestionsTab
+              key="product-questions-tab-contents"
               ref="productQuestions"
               :product="product"
-              v-if="activeProductTab === 'questions'"
+              v-show="activeProductTab === 'questions'"
               @handleQnAAction="handleQnAAction"
               @handleAnswerUpdate="handleAnswerUpdate"
               @handleAskQuestion="handleAskQuestion"
               @handleAnswerQuestion="handleAnswerQuestion"
             />
-          </transition>
+          </transition-group>
         </div>
       </div>
 

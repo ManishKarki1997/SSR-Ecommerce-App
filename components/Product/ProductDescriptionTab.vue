@@ -1,13 +1,20 @@
 <template>
   <div>
-    <div>
+    <div v-if="product.editorDescription">
       <TiptapEditor
         :displayMode="displayMode"
         v-model="product.editorDescription"
       />
     </div>
-    <!-- <editor ref="editor" :config="config" />
-    <button @click="invokeSave">Save</button> -->
+
+    <div
+      v-if="!product.editorDescription"
+      class="flex items-center justify-center w-full h-48"
+    >
+      <p class="italic text-primary">
+        No descriptions available
+      </p>
+    </div>
   </div>
 </template>
 

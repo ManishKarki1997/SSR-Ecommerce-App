@@ -206,6 +206,7 @@ export default {
   },
   mounted() {
     this.productReviewsActionTypes = productReviewsActionTypes;
+
     if (!this.productReviews) {
       this.fetchProductReviews();
     }

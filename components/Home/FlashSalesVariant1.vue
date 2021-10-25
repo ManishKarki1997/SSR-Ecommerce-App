@@ -52,9 +52,12 @@
         </div>
 
         <div class="w-full px-2 md:w-7/12">
-          <h4 class="text-lg font-bold text-primary">
+          <nuxt-link
+            :to="`/products/${flashSaleProducts[0].product.slug}`"
+            class="text-lg font-bold text-primary"
+          >
             {{ flashSaleProducts[0].product.name }}
-          </h4>
+          </nuxt-link>
 
           <div class="flex items-center my-4 space-x-4">
             <div
@@ -107,7 +110,7 @@
                 v-if="!isProductPresentInWishlist(flashSaleProducts[0].product)"
                 @click="onClickWishlistProduct(flashSaleProducts[0].product)"
               >
-                <Icon name="heart" />
+                <Icon class="hover:text-red-500" name="heart" />
               </button>
               <button
                 v-if="isProductPresentInWishlist(flashSaleProducts[0].product)"
@@ -122,7 +125,7 @@
                 v-if="!isProductPresentInCart(flashSaleProducts[0].product)"
                 @click="onClickAddProductToCart(flashSaleProducts[0].product)"
               >
-                <Icon name="cart-outline" />
+                <Icon class="hover:text-blue-500" name="cart-outline" />
               </button>
               <button
                 v-if="isProductPresentInCart(flashSaleProducts[0].product)"
@@ -158,9 +161,9 @@
           </div>
 
           <div>
-            <h4 class="text-sm">
+            <nuxt-link :to="`/products/${sale.product.slug}`" class="text-sm">
               {{ sale.product.name }}
-            </h4>
+            </nuxt-link>
 
             <div class="flex items-center mt-2 space-x-4">
               <div

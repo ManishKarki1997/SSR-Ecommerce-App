@@ -1,10 +1,9 @@
 <template>
-  <header
-    class="fixed top-0 left-0 z-20 w-full px-6 py-5 text-white bg-blue-700 bg-gradient-to-tr from-blue-600 to-blue-700 lg:px-12"
-  >
+  <header class="fixed top-0 left-0 z-20 w-full px-6 py-5 lg:px-12 bg-primary">
+    <!-- class="fixed top-0 left-0 z-20 w-full px-6 py-5 text-white bg-blue-700 bg-gradient-to-tr from-blue-600 to-blue-700 lg:px-12" -->
     <div class="flex items-center justify-between md:justify-start">
       <div class="w-3/12 brand md:w-2/12">
-        <nuxt-link to="/" class="text-white">
+        <nuxt-link to="/" class="text-primary">
           <span class="text-4xl font-bold ">V</span>
           <span class="-ml-2 ">arya</span>
         </nuxt-link>
@@ -17,7 +16,6 @@
         >
           <FormInput
             class="mt-5"
-            :disableColorsStying="true"
             input-name="Search Products"
             :show-label="false"
             placeholder="Search for a product"
@@ -36,7 +34,7 @@
           <li v-if="!user">
             <button
               @click="$router.push('/login')"
-              class="px-4 py-1 text-white hover:text-gray-100"
+              class="px-4 py-1 text-primary hover:text-gray-100"
             >
               Login
             </button>
@@ -57,12 +55,12 @@
               class="mt-2 text-primary"
             >
               <Icon
-                class="text-white "
+                class="text-primary "
                 v-if="themeMode === 'dark'"
                 name="sun"
               />
               <Icon
-                class="text-white"
+                class="text-primary"
                 v-if="themeMode === 'light'"
                 name="moon"
               />
@@ -76,13 +74,13 @@
               class="relative mt-2"
             >
               <span @click="setCartSidebar">
-                <Icon class="text-white cursor-pointer" name="basket" />
+                <Icon class="cursor-pointer text-primary" name="basket" />
               </span>
 
               <div
-                class="absolute flex items-center w-5 h-5 bg-white rounded-full -top-3 -right-2 justify-items-center"
+                class="absolute flex items-center w-5 h-5 rounded-full bg-accent -top-3 -right-2 justify-items-center"
               >
-                <span class="w-full text-xs text-black ">
+                <span class="w-full text-xs text-white ">
                   {{ cart ? cart.length : 0 }}
                 </span>
               </div>
@@ -136,22 +134,26 @@
               @click="handleToggleTheme"
               class=""
             >
-              <Icon class="text-white" v-if="themeMode === 'dark'" name="sun" />
               <Icon
-                class="text-white"
+                class="text-primary"
+                v-if="themeMode === 'dark'"
+                name="sun"
+              />
+              <Icon
+                class="text-primary"
                 v-if="themeMode === 'light'"
                 name="moon"
               />
             </button>
           </li>
 
-          <li class="relative ">
+          <li class="relative">
             <button
               aria-label="Mobile Menu Toggle Button"
               @click="isMobileMenuActive = true"
               class="ml-auto"
             >
-              <Icon class="text-white " name="menu" />
+              <Icon class="text-primary " name="menu" />
             </button>
           </li>
         </ul>
@@ -252,7 +254,6 @@
                     class=""
                     input-name="Search Products"
                     :show-label="false"
-                    :disableColorsStying="true"
                     placeholder="Search for a product"
                     type="text"
                     icon-left="search"
@@ -455,7 +456,7 @@ header {
 
   .search-bar-form {
     .form-input input {
-      background-color: white !important;
+      /* background-color: white !important; */
     }
   }
 
