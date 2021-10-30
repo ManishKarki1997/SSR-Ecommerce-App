@@ -32,7 +32,7 @@
         </nuxt-link>
 
         <ul
-          class="absolute z-20 invisible w-56 px-4 py-4 -ml-2 rounded -top-6 group-hover:visible bg-primary left-56"
+          class="absolute z-20 invisible w-56 px-4 py-4 -ml-4 rounded -top-6 group-hover:visible bg-primary left-56"
         >
           <li
             v-for="subCategory in menuItem.subCategories"
@@ -46,8 +46,9 @@
               <div
                 class="flex items-center space-x-4 transition-transform duration-300 transform subcategory-menu-wrapper hover:text-accent hover:translate-x-4"
               >
-                <span>
-                  <Icon class="w-4 h-4" name="basket" />
+                <span class="text-2xl text-primary">
+                  &bull;
+                  <!-- <Icon class="w-4 h-4" name="basket" /> -->
                 </span>
                 <span class="text-sm font-semibold ">{{
                   subCategory.name

@@ -34,15 +34,15 @@
       <div>
         <button
           @click.stop="onClickAddProductToCart"
-          v-if="!checkIfProductPresentInCart"
+          v-if="!isProductInCart"
           class="visible px-1 py-1 rounded-full md:invisible group-hover:visible icon-wrapper cart-icon outlined"
         >
-          <Icon name="cart-fill" class="w-6 h-6" />
+          <Icon name="cart-outline" class="w-6 h-6" />
         </button>
 
         <button
           @click.stop="onClickAddProductToCart"
-          v-if="checkIfProductPresentInCart"
+          v-if="isProductInCart"
           class="visible md:invisible icon-wrapper group-hover:visible cart-icon filled"
         >
           <Icon class="" name="cart-fill" />
@@ -187,7 +187,7 @@ export default {
         this.wishlist.find(w => w.product.uid === this.product.uid)
       );
     },
-    checkIfProductPresentInCart() {
+    isProductInCart() {
       return (
         this.cart &&
         this.product &&

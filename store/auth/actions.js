@@ -66,7 +66,8 @@ const actions = {
           "addNotification",
           {
             title: "Error",
-            description: "Something went wrong",
+            // description: "Something went wrong",
+            description: error.response.message || "Something went wrong",
             type: "danger"
           },
           { root: true }
@@ -96,7 +97,7 @@ const actions = {
           "addNotification",
           {
             title: "Error",
-            description: "Something went wrong",
+            description: error.response.message || "Something went wrong",
             type: "danger"
           },
           { root: true }

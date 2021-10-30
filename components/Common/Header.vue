@@ -419,6 +419,7 @@ export default {
         this.$router.push(item.path);
       } else {
         if (item.action === "LOGOUT") {
+          this.isProfileContextMenuActive = false;
           this.$store.dispatch("auth/logoutUser");
         }
       }

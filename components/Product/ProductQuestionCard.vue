@@ -42,14 +42,19 @@
       <!-- action buttons -->
       <div class="flex items-center mt-4 space-x-6">
         <button
-          v-if="question.questionId === null && !hasAnswers"
+          v-if="
+            question.questionId === null &&
+              !hasAnswers &&
+              user &&
+              user.role !== 'USER'
+          "
           @click="handleClickAnswerQuestion"
           class="px-6 py-2 text-green-600 rounded-lg hover:bg-green-200"
         >
           Answer
         </button>
         <button
-          v-if="question.questionId !== null"
+          v-if="question.questionId !== null && user && user.role !== 'USER'"
           @click="handleClickUpdateQuestion"
           class="px-6 py-2 text-blue-600 rounded-lg hover:bg-blue-200"
         >
@@ -67,6 +72,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { formatDate } from "@/utils/dateFns";
 
 export default {
@@ -83,6 +89,9 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  computed: {
+    ...mapState("auth", ["user"])
   },
   data() {
     return {};

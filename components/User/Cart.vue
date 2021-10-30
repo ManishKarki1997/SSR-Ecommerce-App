@@ -150,6 +150,7 @@ export default {
           email: this.user.email,
           products: this.cart
         });
+
         this.$store.commit(
           "auth/SET_STRIPE_PAYMENT_INTENT_ID",
           res.data.payload.session.payment_intent

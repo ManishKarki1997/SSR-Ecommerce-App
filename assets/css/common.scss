@@ -62,78 +62,78 @@ img {
     height: 24px;
   }
 
-  &.heart-icon {
-    &.outlined {
-      background-color: #f71638a9;
+  // &.heart-icon {
+  //   &.outlined {
+  //     background-color: #f71638a9;
 
-      &:hover {
-        background: rgba(255, 0, 0, 0.8);
+  //     &:hover {
+  //       background: rgba(255, 0, 0, 0.8);
 
-        svg {
-          fill: white !important;
-        }
-      }
+  //       svg {
+  //         fill: white !important;
+  //       }
+  //     }
 
-      svg {
-        path {
-          stroke: white !important;
-          fill: white !important;
-        }
-      }
-    }
+  //     svg {
+  //       path {
+  //         stroke: white !important;
+  //         fill: white !important;
+  //       }
+  //     }
+  //   }
 
-    &.filled {
-      background: rgba(255, 0, 0, 0.8);
+  //   &.filled {
+  //     background: rgba(255, 0, 0, 0.8);
 
-      svg {
-        fill: white;
-        path {
-          fill: white;
-        }
-      }
+  //     svg {
+  //       fill: white;
+  //       path {
+  //         fill: white;
+  //       }
+  //     }
 
-      &:hover {
-        background-color: #f71638a9;
+  //     &:hover {
+  //       background-color: #f71638a9;
 
-        svg {
-          path {
-            stroke: white !important;
-            fill: white !important;
-          }
-        }
-      }
-    }
-  }
+  //       svg {
+  //         path {
+  //           stroke: white !important;
+  //           fill: white !important;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
-  &.cart-icon {
-    &.outlined {
-      background: #4438caa9;
+  // &.cart-icon {
+  //   &.outlined {
+  //     background: #4438caa9;
 
-      &:hover {
-        background: rgba(0, 0, 255, 0.8);
+  //     &:hover {
+  //       background: rgba(0, 0, 255, 0.8);
 
-        svg {
-          fill: white;
-        }
-      }
+  //       svg {
+  //         fill: white;
+  //       }
+  //     }
 
-      svg {
-        fill: white !important;
-      }
-    }
+  //     svg {
+  //       fill: white !important;
+  //     }
+  //   }
 
-    &.filled {
-      background: rgba(0, 0, 255, 0.8);
+  //   &.filled {
+  //     background: rgba(0, 0, 255, 0.8);
 
-      svg {
-        fill: white !important;
-      }
+  //     svg {
+  //       fill: white !important;
+  //     }
 
-      &:hover {
-        background: #4438caa9;
-      }
-    }
-  }
+  //     &:hover {
+  //       background: #4438caa9;
+  //     }
+  //   }
+  // }
 }
 
 .secondary-header-fade {

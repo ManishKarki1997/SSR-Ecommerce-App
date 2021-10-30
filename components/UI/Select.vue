@@ -67,7 +67,7 @@
           v-for="listItem in listItems"
           :key="listItem.id || listItem.name"
           :class="{ 'pl-3 pr-9': listItem.imageUrl !== undefined }"
-          class="relative py-2 my-2 rounded-lg cursor-pointer select-none group text-primary hover:bg-btnPrimary hover:text-white"
+          class="relative px-2 py-2 my-2 rounded-lg cursor-pointer select-none group text-primary hover:bg-btnPrimary hover:text-white"
           id="listbox-option-0"
           role="option"
           @click="handleSelectItem(listItem)"
