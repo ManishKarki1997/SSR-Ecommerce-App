@@ -416,6 +416,7 @@ export default {
     },
     handleSelectProfileMenuItem(item) {
       if (item.type === "ROUTE") {
+        this.isProfileContextMenuActive = false;
         this.$router.push(item.path);
       } else {
         if (item.action === "LOGOUT") {

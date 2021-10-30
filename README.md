@@ -1,69 +1,68 @@
-# ecommerce
+# Varya Commerce Application
 
-## Build Setup
+Varya Commerce is a simple ecommerce application that you can check it out [here](https://ssr-ecommerce-app.vercel.app/)
 
-```bash
-# install dependencies
-$ npm install
+URL -> https://ssr-ecommerce-app.vercel.app/
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+API repo for this project [here](https://github.com/ManishKarki1997/E-Commerce-Server)
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+#### Tech Stack Used
 
-# generate static project
-$ npm run generate
+- Nuxt as the frontend
+- Node JS as the backend
+- Postgres Database (using Prisma as the ORM)
+- Stripe Payment System
+- Typescript (minimal, still learning myself)
+- Cloudinary as the image hosting service
+- Deployed to Vercel
+
+## Features
+
+- Search functionality, using query parameters like price range, categories, subcategories, filters like brand, color, storage, ram etc
+- Cart and wishlist system, with Stripe payment support
+- Flash sale products for a particular time
+- Server Side Rendered, so some basic SEO functionalities included
+- Admin dashboard to control products, categories, filters
+
+#### Why I built this project
+
+I built this project mainly because I wanted to learn about SSR, Typescript and Postgres. Typescript and Postgres is something I haven't used. I used typescript, although bare minimum, in the API server of this project, not on this one.
+This project is in the ending phase, although there are some features that are to be added, and need to do some bug testing.
+
+#### Missing features
+
+- Password reset system and confirm registration system is missing
+- bug testing and features
+- ...
+
+## Installation
+
+##### 1. Make sure to spin up the API server, from [here](https://github.com/ManishKarki1997/E-Commerce-Server)
+
+##### 2. Rename the .env.example file to .env only
+
+It should look like this
+
+```
+CLOUD_NAME = [optional]
+PRESET_NAME = [optional]
+CLOUDINARY_API_KEY = [optional]
+CLOUDINARY_API_SECRET = [optional]
+STRIPE_PUBLISHABLE_KEY = [optional]
+STRIPE_SECRET_KEY = [optional]
+BACKEND_API_URL = http://localhost:4000/api
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+If you intend to use the dashboard (admin side), you may want to sign up for cloudinary if you want to manage product and categories images
+The variables - CLOUD_NAME, PRESET_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET are all from cloudinary. These are optional
 
-## Special Directories
+If you intend to use Stripe, fill in the Stripe variables
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+##### 3. Install the dependencies and devDependencies and start the server.
 
-### `assets`
+```sh
+npm install
+npm run dev
+```
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+##### 4. App should be running in http://localhost:3000

@@ -26,10 +26,30 @@
           </div>
 
           <div>
-            <h3 class="my-2 text-lg text-accent">
+            <div class="flex items-center my-4 space-x-4">
+              <div
+                class="flex items-center justify-center w-16 px-2 py-1 text-white rounded bg-btnDanger"
+              >
+                <p class="text-sm ">
+                  {{ productDiscountAndPrice.discount }}
+                  Off
+                </p>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                <p class="font-bold">
+                  ${{ productDiscountAndPrice.discountedPrice }}
+                </p>
+                <p class="text-sm line-through text-secondary">
+                  {{ productDiscountAndPrice.discountUnit
+                  }}{{ productDiscountAndPrice.originalPrice }}
+                </p>
+              </div>
+            </div>
+            <!-- <h3 class="my-2 text-lg text-accent">
               <span>{{ constants.CURRENCY }}</span>
-              <!-- <span>{{ product.price }}</span> -->
-            </h3>
+              
+            </h3> -->
           </div>
 
           <div class="w-10/12 mt-2 overflow-auto max-h-48">
@@ -59,6 +79,7 @@ import { mapState } from "vuex";
 import Modal from "@/components/Common/Modal.vue";
 import Icon from "@/components/UI/Icon.vue";
 import BaseButton from "@/components/UI/Button.vue";
+import { calculateProductPriceAndDiscount } from "~/utils";
 
 import constants from "@/utils/constants";
 
@@ -82,6 +103,9 @@ export default {
         this.product &&
         this.cart.find(x => x.product.uid === this.product.uid)
       );
+    },
+    productDiscountAndPrice() {
+      return this.product && calculateProductPriceAndDiscount(this.product);
     }
   },
   data() {

@@ -58,6 +58,9 @@
             <td class="p-3">
               <p class="text-base text-primary">
                 <span>{{ constants.CURRENCY }}</span>
+                <span>{{
+                  productDiscountAndPrice(wishlistItem.product).discountedPrice
+                }}</span>
                 <!-- <span>{{ wishlistItem.product.price }}</span> -->
               </p>
             </td>
@@ -127,6 +130,7 @@ import constants from "@/utils/constants";
 import BaseButton from "@/components/UI/Button.vue";
 import Icon from "@/components/UI/Icon.vue";
 import ProductQuickView from "@/components/User/ProductQuickView.vue";
+import { calculateProductPriceAndDiscount } from "~/utils";
 
 export default {
   components: {
@@ -152,6 +156,9 @@ export default {
         product &&
         this.cart.find(x => x.product.uid === product.uid)
       );
+    },
+    productDiscountAndPrice(product) {
+      return product && calculateProductPriceAndDiscount(product);
     },
 
     async handleAddRemoveProductToCart(product) {

@@ -452,10 +452,18 @@ export default {
           description: res.data.message
         });
 
-        this.product.qna.unshift({
-          ...res.data.payload.question,
-          user: this.user
-        });
+        console.log(this.product);
+
+        // this.product.qna.unshift({
+        //   ...res.data.payload.question,
+        //   user: this.user
+        // });
+
+        // force fix for now
+        // inserting newly asked question (above statement) throws "don't mutate outside vuex" error
+        // can't figure out why it is throwing this error.
+
+        this.$fetch();
 
         this.$refs.productQuestions.handleCloseQuestionModal();
       } catch (error) {
