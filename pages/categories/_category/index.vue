@@ -130,7 +130,7 @@
             <!-- products list -->
             <div
               v-if="detailedCategories[categoryName].products !== undefined"
-              class="pb-16 products-grid"
+              class="pb-16 mt-8 products-grid"
             >
               <ProductCard
                 v-for="(product, idx) in detailedCategories[categoryName]

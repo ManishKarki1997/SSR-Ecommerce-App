@@ -4,8 +4,10 @@
 
 .light {
   --primary-background: rgb(255, 255, 255);
-  --secondary-background: rgba(230, 225, 225, 0.897);
-  --tertiary-background: rgb(223, 217, 217);
+  --secondary-background: rgb(255, 255, 255);
+  /* --secondary-background: rgba(230, 225, 225, 0.897); */
+  /* --tertiary-background: rgb(223, 217, 217); */
+  --tertiary-background: rgb(240, 234, 234);
   --accent-background: #2158e1;
 
   /* --primary-text: rgb(0, 0, 0); */

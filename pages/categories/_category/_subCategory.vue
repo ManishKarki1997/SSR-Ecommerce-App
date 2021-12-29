@@ -96,7 +96,7 @@
             <!-- products list -->
             <div
               v-if="!isLoadingProducts && products"
-              class="grid w-full grid-cols-1 mt-16 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-36"
+              class="grid w-full grid-cols-1 mt-8 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-36"
             >
               <ProductCard
                 v-for="(product, idx) in products"
